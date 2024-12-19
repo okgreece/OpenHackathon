@@ -29,19 +29,15 @@
             </div>
 
             @if(Auth::user()->team_id!= 0)
-                <!-- Αν ο χρήστης ανήκει σε ομάδα -->
                 <div class="mt-6">
                     <h3 class="text-2xl font-semibold">Η ομάδα σου: {{ $userTeam->name }}</h3>
-                    <!-- Εμφάνιση των στοιχείων της ομάδας -->
                     <p class="mt-2 text-lg text-gray-600">Εδώ είναι οι λεπτομέρειες της ομάδας σου. Μπορείς να διαχειριστείς τις δραστηριότητες και τα μέλη της ομάδας σου.</p>
                 </div>
             @else
-                <!-- Αν ο χρήστης δεν ανήκει σε ομάδα -->
                 <div class="mt-6">
                     <h3 class="text-2xl font-semibold">Δεν ανήκεις σε καμία ομάδα</h3>
                     <p class="mt-2 text-lg text-gray-600">Μπορείς να επιλέξεις μία από τις παρακάτω επιλογές:</p>
 
-                    <!-- Επιλογές -->
                     <div class="mt-4">
                         <a href="{{ route('teams.create') }}" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-300 ease-in-out">Δημιουργία Ομάδας</a>
                     </div>
@@ -49,8 +45,9 @@
                         <h4 class="text-xl font-semibold">Ή βρες μια ομάδα για να μπεις:</h4>
                         <ul class="mt-2 space-y-2">
                             @foreach ($teams as $team)
-                                <li class="bg-gray-100 p-4 rounded-lg shadow-md">
+                                <li class="bg-gray-100 p-4 rounded-lg shadow-md flex justify-between items-center">
                                     <a href="{{ route('teams.join', $team->id) }}" class="text-green-600 hover:underline">{{ $team->name }}</a>
+                                    <a href="{{ route('teams.join', $team->id) }}" class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out">Πρόσκληση για συμμετοχή στην ομάδα</a>
                                 </li>
                             @endforeach
                         </ul>

@@ -18,22 +18,22 @@
         }
 
         .logo-img {
-            display: block;  /* Εξασφαλίζει ότι η εικόνα είναι μπλοκ (για να μπορεί να κεντραριστεί) */
-            max-width: 100%;  /* Ορίζουμε ότι το μέγιστο πλάτος της εικόνας θα είναι το 100% του γονικού στοιχείου */
-            width: 40%;  /* Ορίζουμε πλάτος ως ποσοστό του γονικού στοιχείου */
-            height: auto; /* Διατηρεί την αναλογία της εικόνας */
+            display: block;
+            max-width: 100%;
+            width: 40%;
+            height: auto;
         }
 
     </style>
 </head>
 <body class="bg-gray-200 font-sans">
     <header class="bg-green-600 text-white py-6">
-        <div class="container mx-auto flex justify-between items-center px-6">
-            <h1 class="text-3xl font-bold">Hackathon Management</h1>
-            <nav>
-                <a href="./login" class="text-white px-4 hover:text-gray-300">Είσοδος</a>
-            </nav>
-        </div>
+    <div class="container mx-auto flex justify-between items-center px-6">
+        <h1 class="text-3xl font-bold">Hackathon Management</h1>
+        <nav>
+            <a href="./login" class="bg-green-800 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out">Είσοδος</a>
+        </nav>
+    </div>
     </header>
 
     <main class="container mx-auto px-6 py-16">
@@ -41,8 +41,8 @@
         <div class="image-container">
             <img src="{{ asset('../resources/img/openuplogo.svg') }}" alt="OpenUp Thessaloniki Climate 2025" class="logo-img">
         </div>
-            <p class="text-gray-600 mt-4">Ετοίμασε την ομάδα σου και ξεκίνα τον διαγωνισμό!</p>
-            <a href="./register" class="mt-6 inline-block bg-green-600 text-white py-3 px-6 rounded hover:bg-green-800">Εγγραφή</a>
+            <p class="text-gray-800 mt-4">Ετοίμασε την ομάδα σου και ξεκίνα τον διαγωνισμό!</p>
+            <a href="./register" class="mt-6 inline-block bg-green-800 text-white py-3 px-6 rounded hover:bg-green-800">Εγγραφή</a>
         </div>
 
         <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
