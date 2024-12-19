@@ -58,23 +58,35 @@
                     </div>
                 </div>
 
-                <!-- Πίνακας Φάσης Hackathon -->
+                <!-- Φάση Hackathon -->
                 <div class="bg-green-50 p-6 rounded-lg shadow-md">
                     <h3 class="text-2xl font-semibold text-gray-800 mb-4">Φάση του Hackathon</h3>
                     <ul class="list-disc pl-6 text-gray-800 font-medium">
-                        <li id="current-phase" class="text-green-600 text-xl">Εναρκτήρια Φάση</li>
-                        <li>Φάση Υλοποίησης</li>
-                        <li>Τελική Κατάθεση</li>
-                        <li>Παρουσίαση & Βραβεύσεις</li>
+                        @foreach ($phases as $phase)
+                            <li class="{{ $currentPhase->id == $phase->id ? 'text-green-600 text-xl font-bold' : 'text-gray-800' }}">
+                                {{ $phase->phase_name }}
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
 
 
             <!-- Φάση της Ομάδας -->
-            <div class="bg-purple-50 p-6 mb-6 rounded-lg shadow-md">
-                <h3 class="text-2xl font-semibold text-gray-800">Φάση της Ομάδας</h3>
-                <!-- Φάση της Ομάδας εδώ -->
+            <div class="bg-purple-100 p-8 mb-6 rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">Φάση της Ομάδας</h3>
+
+                <div class="flex items-center justify-between">
+                    <p class="text-lg font-medium text-gray-800">
+                        Έχετε ολοκληρώσει το project σας και το καταθέσατε στο GitHub;
+                    </p>
+                    <form action="" method="POST">
+                        @csrf
+                        <button type="submit" class="bg-purple-600 text-white py-2 px-6 rounded-lg hover:bg-purple-700 transition duration-300 ease-in-out">
+                            Ολοκλήρωση
+                        </button>
+                    </form>
+                </div>
             </div>
 
             <!-- Λίστα Μελών Ομάδας -->
@@ -107,4 +119,33 @@
     </div>
 
 </body>
+    <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const countdownDate = new Date("{{ $currentPhase->end_date }}T23:59:59").getTime();
+
+                function updateCountdown() {
+                    const now = new Date().getTime();
+                    const distance = countdownDate - now;
+
+                    if (distance < 0) {
+                        document.getElementById("countdown").innerHTML = "Η Φάση Έχει Τελειώσει!";
+                        return;
+                    }
+
+                    const months = Math.floor(distance / (1000 * 60 * 60 * 24 * 30));
+                    const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+                    document.getElementById("months").textContent = months;
+                    document.getElementById("days").textContent = days;
+                    document.getElementById("hours").textContent = hours;
+                    document.getElementById("minutes").textContent = minutes;
+                }
+
+                setInterval(updateCountdown, 1000);
+            });
+
+        
+    </script>
 </html>

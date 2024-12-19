@@ -23,5 +23,25 @@ class DatabaseSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+
+        DB::table('hackathon_phases')->insert([
+            'phase_name' => 'Εναρκτήρια Φάση',
+            'end_date' => '2025-02-01',
+        ]);
+
+        DB::table('hackathon_phases')->insert([
+            'phase_name' => 'Φάση Υλοποίησης',
+            'end_date' => '2025-03-15',
+        ]);
+
+        DB::table('hackathon_phases')->insert([
+            'phase_name' => 'Τελική Κατάθεση',
+            'end_date' => '2025-04-15',
+        ]);
+
+        DB::table('hackathon_phases')->insert([
+            'phase_name' => 'Παρουσίαση & Βραβεύσεις',
+            'end_date' => '2025-05-18',
+        ]);
     }
 }
