@@ -17,7 +17,8 @@
         }
     </style>
 </head>
-<body class="bg-green-600 font-sans min-h-screen flex items-center justify-center">
+
+<body class="bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 font-sans min-h-screen flex items-center justify-center">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md fade-in">
     <div class="mb-6">
         <a href="./" class="text-green-600 hover:text-green-800 text-xl">

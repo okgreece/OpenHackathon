@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('team_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('team_id')->references('id')->on('teams')->onDelete('set null');
+            // $table->foreign('team_id')->references('id')->on('teams')->onDelete('set null');
         
         });
     }
