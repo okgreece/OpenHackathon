@@ -10,7 +10,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // Λήψη του συνδεδεμένου χρήστη
         $user = Auth::user();
 
         // Έλεγχος αν ο χρήστης έχει ήδη ομάδα
@@ -20,8 +19,7 @@ class DashboardController extends Controller
             return redirect()->route('teams.panel', ['team' => $user->team_id]);
         }
 
-        // Αν δεν έχει ομάδα, πρέπει να περάσουμε τις διαθέσιμες ομάδες στο view
-        $teams = Team::all();  // Παίρνουμε όλες τις ομάδες από τη βάση δεδομένων
+        $teams = Team::all();  
         return view('dashboard', compact('teams'));
     }
 }

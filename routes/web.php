@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\TeamInvitationController;
 
 
 Route::get('/', function () {
@@ -44,3 +45,11 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
 
 Route::post('/admin/login', [AdminLoginController::class, 'login']);
+
+
+
+Route::middleware('auth')->group(function() {
+    Route::post('/teams/{teamId}/invite', [TeamInvitationController::class, 'sendInvitation'])->name('teams.invite');
+    Route::post('/invitations/{invitationId}/accept', [TeamInvitationController::class, 'acceptInvitation'])->name('invitations.accept');
+    Route::post('/invitations/{invitationId}/reject', [TeamInvitationController::class, 'rejectInvitation'])->name('invitations.reject');
+});

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Ομάδας - Hackathon Management System</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="icon" href="../img/logoonly.svg">
     <style>
         #countdown div {
             text-align: center;
@@ -71,6 +70,72 @@
                 </div>
             </div>
 
+            <div class="bg-white p-8 rounded-lg shadow-xl space-y-6">
+                <h3 class="text-3xl font-semibold text-gray-800">Διαχείριση Ομάδας</h3>
+
+                @if ($team->user_id == Auth::user()->id)
+                    <h4 class="text-2xl font-semibold text-gray-800 mt-4">Αιτήσεις συμμετοχής στην ομάδα:</h4>
+
+                    <ul class="mt-4 space-y-4">
+                        @foreach ($team->invitations as $invitation)
+                            <!-- Εμφανίζονται μόνο οι προσκλήσεις με κατάσταση 'pending' -->
+                            @if ($invitation->status == 'pending')
+                                <li class="flex justify-between items-center p-6 bg-gray-50 rounded-lg shadow-lg transition-all hover:bg-gray-100">
+                                    <div>
+                                        <span class="font-semibold text-lg text-gray-700">{{ $invitation->user->name }}</span>
+                                        <p class="text-sm text-gray-500">{{ ucfirst($invitation->status) }}</p>
+                                    </div>
+
+                                    <div class="flex items-center space-x-4">
+                                        <form action="{{ route('invitations.accept', $invitation->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="bg-green-600 text-white py-2 px-6 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out">
+                                                Αποδοχή
+                                            </button>
+                                        </form>
+
+                                        <form action="{{ route('invitations.reject', $invitation->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out">
+                                                Απόρριψη
+                                            </button>
+                                        </form>
+                                    </div>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                @elseif ($team->members->contains('id', Auth::user()->id))
+                    <p class="text-lg text-gray-500">Μόνο ο Leader της ομάδας μπορεί να διαχειριστεί τις αιτήσεις συμμετοχής.</p>
+                @endif
+            </div>
+
+           <!-- Λίστα Μελών Ομάδας -->
+            <div class="bg-teal-50 p-6 mb-6 rounded-lg shadow-md">
+                <h3 class="text-3xl font-semibold text-gray-800">Μέλη της Ομάδας</h3>
+                <ul class="mt-4 space-y-4">
+                @foreach($members->where('team_id', $team->id) as $member)                       
+                 <li class="flex justify-between items-center p-4 bg-white rounded-lg shadow-md hover:bg-gray-100">
+                            <div>
+                                <!-- Έλεγχος για την ύπαρξη χρήστη και εμφάνιση του ονόματος -->
+                                <span class="text-gray-600 font-semibold">
+                                    {{ $member->user ? $member->user->name : 'Ανώνυμο μέλος' }}
+                                </span>
+                                <p class="text-sm text-gray-600">
+                                    <!-- Έλεγχος για την ύπαρξη email -->
+                                    {{ $member->user ? $member->user->email : 'Δεν υπάρχει email' }}
+                                </p>
+                            </div>
+                            <!-- Εμφάνιση του ρόλου του μέλους -->
+                            <span class="bg-gray-800 text-white py-1 px-3 rounded-full text-sm">
+                                {{ $member->role }}
+                            </span>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+
+
 
             <!-- Φάση της Ομάδας -->
             <div class="bg-purple-100 p-8 mb-6 rounded-lg shadow-md">
@@ -87,22 +152,6 @@
                         </button>
                     </form>
                 </div>
-            </div>
-
-            <!-- Λίστα Μελών Ομάδας -->
-            <div class="bg-teal-50 p-6 mb-6 rounded-lg shadow-md">
-                <h3 class="text-3xl font-semibold text-gray-800">Μέλη της Ομάδας</h3>
-                <ul class="mt-4 space-y-4">
-                    @foreach ($team->members as $member)
-                    <li class="flex justify-between items-center p-4 bg-white rounded-lg shadow-md hover:bg-gray-100">
-                        <div>
-                            <span class="text-gray-600 font-semibold">{{ $member->user->name }}</span>
-                            <p class="text-sm text-gray-600">{{ $member->user->email }}</p>
-                        </div>
-                        <span class="bg-gray-800 text-white py-1 px-3 rounded-full text-sm">{{ $member->role }}</span>
-                    </li>
-                    @endforeach
-                </ul>
             </div>
 
             <!-- Αποσύνδεση -->

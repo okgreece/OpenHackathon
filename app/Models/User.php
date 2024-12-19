@@ -49,8 +49,15 @@ class User extends Authenticatable
         ];
     }
 
-    public function team()
+    public function teams()
     {
-        return $this->belongsTo(Team::class); // Κάθε χρήστης ανήκει σε μία ομάδα
+        return $this->belongsToMany(Team::class, 'team_members')
+                    ->withPivot('role') // Εδώ επίσης χρησιμοποιούμε το pivot για να πάρουμε το role
+                    ->withTimestamps();
+    }
+
+    public function invitations()
+    {
+        return $this->hasMany(TeamInvitation::class);
     }
 }

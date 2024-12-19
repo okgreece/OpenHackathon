@@ -6,7 +6,7 @@ use App\Models\Team;
 use Illuminate\Http\Request;
 use App\Models\TeamMember;
 use App\Models\HackathonPhase;
-
+use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
@@ -54,7 +54,8 @@ class TeamController extends Controller
 
         $currentPhase = HackathonPhase::where('end_date', '>=', now())->orderBy('end_date')->first();
         $phases = HackathonPhase::orderBy('end_date')->get();
+        $members = TeamMember::with('user', 'team')->get();
 
-        return view('teams.panel', compact('team','currentPhase','phases'));
+        return view('teams.panel', compact('team','currentPhase','phases','members'));
     }
 }

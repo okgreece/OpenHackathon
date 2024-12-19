@@ -21,11 +21,18 @@ class Team extends Model
 
     public function members()
     {
-        return $this->hasMany(TeamMember::class, 'team_id');
+        return $this->belongsToMany(User::class, 'team_members')
+                    ->withPivot('role') // Χρησιμοποιούμε το pivot για να πάρουμε το role
+                    ->withTimestamps();
     }
 
     public function leader()
     {
         return $this->hasOne(TeamMember::class)->where('role', 'leader');
+    }
+
+     public function invitations()
+    {
+        return $this->hasMany(TeamInvitation::class);
     }
 }

@@ -44,12 +44,17 @@
                     <div class="mt-4">
                         <h4 class="text-xl font-semibold">Ή βρες μια ομάδα για να μπεις:</h4>
                         <ul class="mt-2 space-y-2">
-                            @foreach ($teams as $team)
-                                <li class="bg-gray-100 p-4 rounded-lg shadow-md flex justify-between items-center">
-                                    <a href="{{ route('teams.join', $team->id) }}" class="text-green-600 hover:underline">{{ $team->name }}</a>
-                                    <a href="{{ route('teams.join', $team->id) }}" class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out">Πρόσκληση για συμμετοχή στην ομάδα</a>
-                                </li>
-                            @endforeach
+                        @foreach ($teams as $team)
+                            <li class="bg-gray-100 p-4 rounded-lg shadow-md flex justify-between items-center">
+                                <a href="{{ route('teams.join', $team->id) }}" class="text-green-600 hover:underline">{{ $team->name }}</a>
+                                <form action="{{ route('teams.invite', $team->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out">
+                                        Πρόσκληση για συμμετοχή στην ομάδα
+                                    </button>
+                                </form>
+                            </li>
+                        @endforeach
                         </ul>
                     </div>
                 </div>
