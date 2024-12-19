@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="135.40184mm"
+   height="44.377666mm"
+   viewBox="0 0 135.40184 44.377666"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="gradient.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.72515432"
+     inkscape:cx="309.58927"
+     inkscape:cy="358.54437"
+     inkscape:window-width="1920"
+     inkscape:window-height="1010"
+     inkscape:window-x="-6"
+     inkscape:window-y="411"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="rect1_00000024703683328534306560000007230179574414199975_-3"
+       gradientUnits="userSpaceOnUse"
+       x1="-4.3611002"
+       y1="52.859501"
+       x2="205.5482"
+       y2="52.859501"
+       gradientTransform="matrix(0.64532665,0,0,-0.24407069,25.885576,88.794004)">
+		<stop
+   offset="0"
+   style="stop-color:#5FD35F"
+   id="stop1-3" />
+
+		<stop
+   offset="1"
+   style="stop-color:#05D3B2;stop-opacity:0.8361"
+   id="stop2-5" />
+
+	</linearGradient>
+  </defs>
+  <g
+     inkscape:label="Στρώση 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-23.01875,-53.710415)">
+    <rect
+       id="rect1"
+       x="23.07106"
+       y="53.762726"
+       style="fill:url(#rect1_00000024703683328534306560000007230179574414199975_-3);stroke:#ffffff;stroke-width:0.104621;stroke-miterlimit:11.3386;stroke-opacity:0"
+       width="135.29723"
+       height="44.273045" />
+  </g>
+</svg>
