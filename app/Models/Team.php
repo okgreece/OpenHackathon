@@ -10,7 +10,12 @@ class Team extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['name', 'user_id'];
+    protected $fillable = [
+        'name',
+        'description',
+        'environmental_data',
+        'user_id'
+    ];
     protected $dates = ['created_at', 'updated_at'];
 
 

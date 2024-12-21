@@ -30,7 +30,12 @@
             <!-- Λεπτομέρειες Ομάδας -->
             <div class="bg-gray-50 p-6 mb-6 rounded-lg shadow-md">
                 <h3 class="text-3xl font-semibold text-gray-700">Λεπτομέρειες Ομάδας</h3>
-                <p class="mt-2 text-lg text-gray-600">Εδώ είναι όλες οι πληροφορίες για την ομάδα σου.</p>
+                <p class="text-gray-700">{{ $team->description ?? 'Δεν έχει οριστεί περιγραφή.' }}</p>
+            </div>
+
+            <div class="bg-gray-50 p-6 mb-6 rounded-lg shadow-md">
+                <h3 class="text-3xl font-semibold text-gray-700">Περιβαλλοντολογικά Δεδομένα</h3>
+                <p class="text-gray-700">{{ $team->environmental_data ?? 'Δεν έχουν επιλεγεί δεδομένα.' }}</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">

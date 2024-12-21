@@ -19,10 +19,14 @@ class TeamController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:500',
+            'environmental_data' => 'nullable|string|max:255',
         ]);
 
         $team = Team::create([
             'name' => $request->name,
+            'description' => $request->description,
+            'environmental_data' => $request->environmental_data,
             'user_id' => auth()->id(),
         ]);
 

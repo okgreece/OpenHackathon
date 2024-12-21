@@ -34,4 +34,12 @@ class TeamInvitation extends Model
     {
         return $this->belongsTo(User::class, 'leader_id');
     }
+
+    public static function getStatus($teamId, $userId)
+    {
+        return self::where('team_id', $teamId)
+                    ->where('user_id', $userId)
+                    ->orderBy('created_at', 'desc')
+                    ->value('status');
+    }
 }

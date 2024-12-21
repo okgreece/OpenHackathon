@@ -44,19 +44,32 @@
                     <div class="mt-4">
                         <h4 class="text-xl font-semibold">Ή βρες μια ομάδα για να μπεις:</h4>
                         <ul class="mt-2 space-y-2">
-                        @foreach ($teams as $team)
-                            <li class="bg-gray-100 p-4 rounded-lg shadow-md flex justify-between items-center">
-                                <a href="{{ route('teams.join', $team->id) }}" class="text-green-600 hover:underline">{{ $team->name }}</a>
-                                <form action="{{ route('teams.invite', $team->id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out">
-                                        Πρόσκληση για συμμετοχή στην ομάδα
-                                    </button>
-                                </form>
-                            </li>
-                        @endforeach
+                            @foreach ($teams as $team)
+                                @php
+                                    $invitationStatus = App\Models\TeamInvitation::getStatus($team->id, Auth::id());
+                                @endphp
+                                <li class="bg-gray-100 p-4 rounded-lg shadow-md flex justify-between items-center">
+                                    <span class="text-green-600">{{ $team->name }}</span>
+                                    @if (!$invitationStatus)
+                                        <!-- Αν δεν υπάρχει αίτηση -->
+                                        <form action="{{ route('teams.invite', $team->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out">
+                                                Πρόσκληση για συμμετοχή στην ομάδα
+                                            </button>
+                                        </form>
+                                    @elseif ($invitationStatus == 'pending')
+                                        <!-- Αν η αίτηση είναι σε εκκρεμότητα -->
+                                        <span class="text-yellow-600 font-semibold">Αίτηση σε εκκρεμότητα</span>
+                                    @elseif ($invitationStatus == 'rejected')
+                                        <!-- Αν η αίτηση απορρίφθηκε -->
+                                        <span class="text-red-600 font-semibold">Η αίτηση απορρίφθηκε</span>
+                                    @endif
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
+
                 </div>
             @endif
         </div>
