@@ -18,6 +18,7 @@
     </style>
 </head>
 <body class="bg-green-600 font-sans min-h-screen">
+ 
     <div class="max-w-7xl mx-auto p-6 fade-in">
         <div class="bg-white p-8 rounded-lg shadow-md">
             <div class="flex justify-between items-center">
@@ -28,19 +29,40 @@
                 </form>
             </div>
 
-            @if(Auth::user()->team_id!= 0)
+            @if(Auth::user()->team_id != 0)
                 <div class="mt-6">
                     <h3 class="text-2xl font-semibold">Η ομάδα σου: {{ $userTeam->name }}</h3>
                     <p class="mt-2 text-lg text-gray-600">Εδώ είναι οι λεπτομέρειες της ομάδας σου. Μπορείς να διαχειριστείς τις δραστηριότητες και τα μέλη της ομάδας σου.</p>
                 </div>
             @else
-                <div class="mt-6">
+            <div class="mt-6">
                     <h3 class="text-2xl font-semibold">Δεν ανήκεις σε καμία ομάδα</h3>
                     <p class="mt-2 text-lg text-gray-600">Μπορείς να επιλέξεις μία από τις παρακάτω επιλογές:</p>
 
                     <div class="mt-4">
-                        <a href="{{ route('teams.create') }}" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-300 ease-in-out">Δημιουργία Ομάδας</a>
+                        @if ($teamRequestStatus && $teamRequestStatus->status == 'pending')
+                            <!-- Αν η αίτηση για δημιουργία ομάδας είναι σε κατάσταση pending, το κουμπί δημιουργίας ομάδας είναι απενεργοποιημένο -->
+                            <button class="bg-blue-600 text-white py-2 px-4 rounded-lg cursor-not-allowed opacity-50" disabled>
+                                Δημιουργία Ομάδας
+                            </button>
+                            <p class="mt-2 text-red-600 font-semibold">Η αίτησή σου για δημιουργία ομάδας είναι σε εκκρεμότητα.</p>
+                        @elseif ($teamRequestStatus && $teamRequestStatus->status == 'rejected')
+                            <!-- Αν η αίτηση απορρίφθηκε, το κουμπί είναι ενεργό και εμφανίζεται ο λόγος απόρριψης -->
+                            <a href="{{ route('teams.create') }}" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-300 ease-in-out">
+                                Δημιουργία Ομάδας
+                            </a>
+                            <p class="mt-2 text-red-600 font-semibold">Η αίτησή σου για δημιουργία ομάδας απορρίφθηκε. Λόγος απόρριψης:</p>
+                            <p class="mt-2 text-gray-800">{{ $rejectionReason }}</p>
+                            <p class="mt-2 text-blue-600 font-semibold">Μπορείς να υποβάλεις νέα αίτηση για δημιουργία ομάδας.</p>
+                        @else
+                            <!-- Αν δεν υπάρχει αίτηση σε εκκρεμότητα ή απορρίφθηκε, το κουμπί είναι ενεργό -->
+                            <a href="{{ route('teams.create') }}" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-300 ease-in-out">
+                                Δημιουργία Ομάδας
+                            </a>
+                        @endif
                     </div>
+
+
                     <div class="mt-4">
                         <h4 class="text-xl font-semibold">Ή βρες μια ομάδα για να μπεις:</h4>
                         <ul class="mt-2 space-y-2">
@@ -69,7 +91,6 @@
                             @endforeach
                         </ul>
                     </div>
-
                 </div>
             @endif
         </div>

@@ -2,50 +2,122 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HackathonPhase;
 use App\Models\Team;
 use App\Models\TeamMember;
+use App\Models\TeamRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 class AdminPanelController extends Controller
 {
     public function index()
     {
-        // Λήψη όλων των ομάδων
         $teams = Team::all();
 
-        // Λήψη όλων των μελών και τα συσχετίζουμε με τις ομάδες τους
         $members = TeamMember::with('user', 'team')->get();
+        $teamRequests = TeamRequest::where('status', 'pending')->with('user')->get();
+        $phases = HackathonPhase::all();  // Παίρνουμε όλες τις φάσεις
 
-        return view('admin.panel', compact('teams', 'members'));
+        return view('admin.panel', compact('teams', 'teamRequests', 'members','phases'));
     }
 
     public function deleteTeam($id)
     {
-        // Εύρεση της ομάδας
         $team = Team::findOrFail($id);
 
-        // Διαγραφή όλων των μελών της ομάδας πρώτα
         $team->members()->delete();
 
-        // Διαγραφή της ομάδας
         $team->delete();
 
         return back()->with('success', 'Η ομάδα διαγράφηκε επιτυχώς.');
     }
 
-    // Μέθοδος για διαγραφή μέλους
     public function deleteMember($id)
     {
-        // Εύρεση του μέλους
         $member = TeamMember::findOrFail($id);
+        $user = User::where('id', $member->user_id)->first();
 
-        // Διαγραφή του μέλους από την ομάδα
+        if ($user) {
+           
+            $user->team_id = null;
+            $user->save();
+
+        } else {
+            dd('No user found for team member:', ['member_id' => $id]);
+        }
+
         $member->delete();
 
         return back()->with('success', 'Το μέλος διαγράφηκε επιτυχώς.');
     }
+
+    public function viewTeamRequests()
+    {
+        $teamRequests = TeamRequest::with('user')->where('status', 'pending')->get();
+        return view('admin.team-requests', compact('teamRequests'));
+    }
+
+    public function approveRequest($id)
+    {
+        $teamRequest = TeamRequest::findOrFail($id);
+
+        $team = Team::create([
+            'user_id' => $teamRequest->user_id,
+            'name' => $teamRequest->team_name,
+            'description' => $teamRequest->description,
+            'environmental_data' => $teamRequest->environmental_data,
+        ]);
+
+        TeamMember::create([
+            'team_id' => $team->id,
+            'user_id' => $teamRequest->user_id,
+            'role' => 'leader',
+            'joined_at' => now(),
+        ]);
+
+        $user = $teamRequest->user;
+        $user->team_id = $team->id;
+        $user->save();
+        $teams = Team::all();
+
+        $teamRequest->delete();
+
+        return redirect()->back();
+    }
+
+    //hackathon phases update
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'phase_name' => 'required|string|max:255',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
+        ]);
+
+        $phase = HackathonPhase::findOrFail($id); // Εύρεση της φάσης με το id
+        $phase->update([
+            'phase_name' => $request->input('phase_name'),
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date'),
+        ]);
+
+        return redirect()->route('admin.hackathon-phases.index')->with('success', 'Η φάση ενημερώθηκε με επιτυχία.');
+    }
+
+    public function rejectRequest($id, Request $request)
+    {
+        $teamRequest = TeamRequest::findOrFail($id);
+        $teamRequest->status = 'rejected';
+        $teamRequest->rejection_reason = $request->input('rejection_reason');  // Αποθήκευση του λόγου απόρριψης
+        $teamRequest->save();
+
+        return redirect()->back();
+    }
+
+
 
     public function logout()
     {

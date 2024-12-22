@@ -26,6 +26,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.create');
     Route::post('/teams', [TeamController::class, 'store'])->name('teams.store');
+    Route::post('/team-requests', [TeamController::class, 'store'])->name('team-requests.store');
+    Route::get('/admin/team-requests', [AdminPanelController::class, 'viewTeamRequests'])->name('admin.team-requests');
+    // Route::post('/admin/team-requests/{id}/approve', [AdminPanelController::class, 'approveRequest'])->name('admin.team-requests.approve');
+    // Route::post('/admin/team-requests/{id}/reject', [AdminPanelController::class, 'rejectRequest'])->name('admin.team-requests.reject');
+    Route::get('/hackathon-phases', [AdminPanelController::class, 'index'])->name('admin.hackathon-phases.index');
+    Route::post('/hackathon-phases/update/{id}', [AdminPanelController::class, 'update'])->name('admin.hackathon-phases.update');    
 
     Route::post('/teams/join/{team}', [TeamController::class, 'join'])->name('teams.join');
 
@@ -46,7 +52,22 @@ Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name
 
 Route::post('/admin/login', [AdminLoginController::class, 'login']);
 
+// Ομάδες και Αιτήσεις
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
 
+    // Διαχείριση αιτήσεων ομάδων
+    Route::post('/team-requests/{id}/approve', [AdminPanelController::class, 'approveRequest'])->name('team-requests.approve');
+    Route::post('/team-requests/{id}/reject', [AdminPanelController::class, 'rejectRequest'])->name('team-requests.reject');
+
+    // Διαχείριση ομάδων
+    Route::delete('/delete-team/{team}', [AdminPanelController::class, 'deleteTeam'])->name('delete.team');
+
+    // Διαχείριση μελών
+    Route::delete('/delete-member/{member}', [AdminPanelController::class, 'deleteMember'])->name('delete.member');
+    
+    // Αποσύνδεση
+    Route::post('/logout', [AdminPanelController::class, 'logout'])->name('logout');
+});
 
 Route::middleware('auth')->group(function() {
     Route::post('/teams/{teamId}/invite', [TeamInvitationController::class, 'sendInvitation'])->name('teams.invite');

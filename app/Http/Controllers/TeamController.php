@@ -6,6 +6,7 @@ use App\Models\Team;
 use Illuminate\Http\Request;
 use App\Models\TeamMember;
 use App\Models\HackathonPhase;
+use App\Models\TeamRequest;
 use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
@@ -14,35 +15,28 @@ class TeamController extends Controller
     {
         return view('teams.create');
     }
-
+    
     public function store(Request $request)
     {
+        // Validate τα δεδομένα
         $request->validate([
-            'name' => 'required|string|max:255',
+            'team_name' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
             'environmental_data' => 'nullable|string|max:255',
         ]);
-
-        $team = Team::create([
-            'name' => $request->name,
+    
+       
+        $teamRequest = TeamRequest::create([
+            'user_id' => auth()->id(),
+            'team_name' => $request->team_name,
             'description' => $request->description,
             'environmental_data' => $request->environmental_data,
-            'user_id' => auth()->id(),
+            'status' => 'pending',
         ]);
-
-        TeamMember::create([
-            'team_id' => $team->id,
-            'user_id' => auth()->id(),
-            'role' => 'leader',
-            'joined_at' => now(),
-        ]);
-
-        $user = auth()->user();
-        $user->team_id = $team->id;
-        $user->save();
-
-        return redirect()->route('dashboard')->with('success', 'Η ομάδα δημιουργήθηκε με επιτυχία.');
+    
+        return redirect()->route('dashboard')->with('success', 'Η αίτηση δημιουργίας ομάδας καταχωρήθηκε και είναι σε κατάσταση αναμονής.');
     }
+    
 
     public function join()
     {
