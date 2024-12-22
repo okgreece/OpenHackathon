@@ -141,23 +141,67 @@
             </div>
 
 
+        <!-- Φάση της Ομάδας -->
+        <div class="{{ $team->phase_completed ? 'bg-green-100' : 'bg-purple-100' }} p-8 mb-6 rounded-lg shadow-md">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Φάση της Ομάδας</h3>
 
-            <!-- Φάση της Ομάδας -->
-            <div class="bg-purple-100 p-8 mb-6 rounded-lg shadow-md">
-                <h3 class="text-2xl font-semibold text-gray-900 mb-4">Φάση της Ομάδας</h3>
-
+            @if($team->phase_completed)
+                <!-- Κατάσταση ολοκλήρωσης -->
+                <div>
+                    <p class="text-lg font-medium text-gray-800">
+                        Το project σας έχει ολοκληρωθεί και κατατεθεί. Αναμείνατε την φάση "Παρουσίαση & βραβεύσεις".
+                    </p>
+                </div>
+            @else
+                <!-- Μη ολοκληρωμένη κατάσταση -->
                 <div class="flex items-center justify-between">
                     <p class="text-lg font-medium text-gray-800">
                         Έχετε ολοκληρώσει το project σας και το καταθέσατε στο GitHub;
                     </p>
-                    <form action="" method="POST">
-                        @csrf
-                        <button type="submit" class="bg-purple-600 text-white py-2 px-6 rounded-lg hover:bg-purple-700 transition duration-300 ease-in-out">
+
+                    @if(auth()->user()->id === $team->user_id) <!-- Ο leader έχει δικαίωμα -->
+                        <button 
+                            onclick="openModal()" 
+                            class="bg-purple-600 text-white py-2 px-6 rounded-lg hover:bg-purple-700 transition duration-300 ease-in-out">
                             Ολοκλήρωση
                         </button>
-                    </form>
+                    @else <!-- Μη-Leader -->
+                        <button class="bg-gray-400 text-white py-2 px-6 rounded-lg cursor-not-allowed" disabled>
+                            Μόνο ο Leader έχει αυτό το δικαίωμα
+                        </button>
+                    @endif
                 </div>
+            @endif
+        </div>
+
+
+        <!-- Modal -->
+        <div id="completionModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Ολοκλήρωση Project</h3>
+                <form action="{{ route('team.completePhase', $team->id) }}" method="POST">
+                    @csrf
+                    <label for="github_link" class="block text-gray-700 font-medium mb-2">Σύνδεσμος GitHub</label>
+                    <input type="url" name="github_link" id="github_link" required 
+                    class="border-2 border-gray-800 px-4 py-2 rounded-md w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-black"
+                    placeholder="Εισάγετε το σύνδεσμο του GitHub σας">
+
+                    <p class="text-gray-600 mb-4">Είστε σίγουροι ότι θέλετε να ολοκληρώσετε τη φάση; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.</p>
+
+                    <div class="flex justify-end space-x-4">
+                        <button type="button" onclick="closeModal()" 
+                                class="bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600 transition duration-300">
+                            Ακύρωση
+                        </button>
+                        <button type="submit" 
+                                class="bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition duration-300">
+                            Επιβεβαίωση
+                        </button>
+                    </div>
+                </form>
             </div>
+        </div>
+
 
             <!-- Αποσύνδεση -->
             <div class="mt-6">
@@ -202,4 +246,15 @@
 
         
     </script>
+
+    <script>
+        function openModal() {
+            document.getElementById('completionModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('completionModal').classList.add('hidden');
+        }
+    </script>
+
 </html>

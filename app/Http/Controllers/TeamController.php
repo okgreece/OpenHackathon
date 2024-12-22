@@ -44,6 +44,7 @@ class TeamController extends Controller
         return view('teams.join', compact('teams'));
     }
 
+
     public function showPanel(Team $team)
     {
         if (auth()->user()->team_id != $team->id) {
@@ -56,4 +57,26 @@ class TeamController extends Controller
 
         return view('teams.panel', compact('team','currentPhase','phases','members'));
     }
+
+    public function completePhase(Request $request, $teamId)
+    {
+        $request->validate([
+            'github_link' => 'required|url',
+        ]);
+    
+        $team = Team::findOrFail($teamId);
+    
+        // Μόνο ο leader μπορεί να ολοκληρώσει
+        // if ($team->user_id !== auth()->id()) {
+        //     dd('Μόνο ο αρχηγός της ομάδας μπορεί να ολοκληρώσει τη φάση.');
+        // }
+    
+        $team->update([
+            'phase_completed' => true,
+            'github_link' => $request->input('github_link'),
+        ]);
+    
+        return redirect()->back()->with('success', 'Η φάση ολοκληρώθηκε με επιτυχία.');
+    }
+    
 }

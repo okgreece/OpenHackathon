@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->boolean('phase_completed')->default(false);
+            $table->string('github_link')->nullable()->after('phase_completed');
             $table->timestamps();
         });
     }

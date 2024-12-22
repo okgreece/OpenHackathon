@@ -37,6 +37,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/teams/{team}/panel', [TeamController::class, 'showPanel'])->name('teams.panel');
 
+    Route::post('/team/{id}/complete-phase', [TeamController::class, 'completePhase'])->name('team.completePhase');
+
+
 });
 
 //ADMIN

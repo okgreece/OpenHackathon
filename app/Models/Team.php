@@ -14,8 +14,11 @@ class Team extends Model
         'name',
         'description',
         'environmental_data',
-        'user_id'
+        'user_id',
+        'phase_completed', // Προστέθηκε
+        'github_link',     // Προστέθηκε
     ];
+    
     protected $dates = ['created_at', 'updated_at'];
 
 
