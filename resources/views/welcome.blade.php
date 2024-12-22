@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hackathon Management System</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="icon" href="../resources/img/logoonly.svg">
+    <link rel="icon" href="{{ asset('/img/logoonly.svg') }}">
     <style>
         body { min-height: 100vh; display: flex; flex-direction: column; background: linear-gradient(rgb(0, 173, 101), rgb(36, 173, 109)) }
         main { flex: 1; }
@@ -39,7 +39,7 @@
     <main class="container mx-auto px-6 py-16">
         <div class="text-center">
         <div class="image-container">
-            <img src="{{ asset('../resources/img/openuplogo.svg') }}" alt="OpenUp Thessaloniki Climate 2025" class="logo-img">
+            <img src="{{ asset('/img/openuplogo.svg') }}" alt="OpenUp Thessaloniki Climate 2025" class="logo-img">
         </div>
             <p class="text-gray-800 mt-4">Ετοίμασε την ομάδα σου και ξεκίνα τον διαγωνισμό!</p>
             <a href="./register" class="mt-6 inline-block bg-green-800 text-white py-3 px-6 rounded hover:bg-green-800">Εγγραφή</a>
