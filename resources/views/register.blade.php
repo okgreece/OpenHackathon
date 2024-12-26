@@ -59,7 +59,9 @@
             <button type="submit" class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-500 transition duration-300 ease-in-out">Εγγραφή</button>
         </form>
 
-        <p class="mt-6 text-gray-600 text-center">Έχεις ήδη λογαριασμό; <a href="auth/login" class="text-green-600 hover:underline">Συνδέσου Εδώ!</a></p>
+        <p class="mt-6 text-gray-600 text-center">Έχεις ήδη λογαριασμό; 
+            <a href="{{ route('login') }}" class="text-green-600 hover:underline">Συνδέσου Εδώ!</a>
+        </p>    
     </div>
 </body>
 </html>

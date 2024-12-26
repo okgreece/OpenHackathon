@@ -77,7 +77,7 @@
                                         <form action="{{ route('teams.invite', $team->id) }}" method="POST">
                                             @csrf
                                             <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out">
-                                                Πρόσκληση για συμμετοχή στην ομάδα
+                                                Αίτηση για συμμετοχή στην ομάδα
                                             </button>
                                         </form>
                                     @elseif ($invitationStatus == 'pending')
