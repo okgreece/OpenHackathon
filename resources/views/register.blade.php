@@ -30,6 +30,10 @@
 
         <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Δημιούρησε τον λογαριασμό σου</h2>
         
+        @php
+            $setting = \App\Models\Setting::first();
+        @endphp
+
         <form action="{{ url('/register') }}" method="POST" class="space-y-6">
             @csrf
 
@@ -56,8 +60,17 @@
                 <input type="password" id="password_confirmation" name="password_confirmation" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400" placeholder="Confirm Password">
             </div>
 
-            <button type="submit" class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-500 transition duration-300 ease-in-out">Εγγραφή</button>
+            <button type="submit" 
+                    class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-500 transition duration-300 ease-in-out" 
+                    @if (!$setting->registration_active) disabled @endif>
+                Εγγραφή
+            </button>
         </form>
+
+        @if (!$setting->registration_active)
+            <p class="mt-4 text-red-600 text-center">Οι εγγραφές έχουν ολοκληρωθεί.</p>
+        @endif
+
 
         <p class="mt-6 text-gray-600 text-center">Έχεις ήδη λογαριασμό; 
             <a href="{{ route('login') }}" class="text-green-600 hover:underline">Συνδέσου Εδώ!</a>
