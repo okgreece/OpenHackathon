@@ -68,7 +68,12 @@
                         <ul class="mt-2 space-y-2">
                             @foreach ($teams as $team)
                                 @php
-                                    $invitationStatus = App\Models\TeamInvitation::getStatus($team->id, Auth::id());
+                                    // Ελέγχουμε πόσα μέλη έχει η ομάδα από τον πίνακα team_members
+                                    $teamMembersCount = \App\Models\TeamMember::where('team_id', $team->id)->count();
+                                    
+                                    // Αν η ομάδα έχει λιγότερα από 4 μέλη, την εμφανίζουμε
+                                    if ($teamMembersCount < 4) {
+                                        $invitationStatus = App\Models\TeamInvitation::getStatus($team->id, Auth::id());
                                 @endphp
                                 <li class="bg-gray-100 p-4 rounded-lg shadow-md flex justify-between items-center">
                                     <span class="text-green-600">{{ $team->name }}</span>
@@ -88,9 +93,13 @@
                                         <span class="text-red-600 font-semibold">Η αίτηση απορρίφθηκε</span>
                                     @endif
                                 </li>
+                                @php
+                                    }
+                                @endphp
                             @endforeach
                         </ul>
                     </div>
+
                 </div>
             @endif
         </div>
