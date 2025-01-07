@@ -104,6 +104,15 @@ class AdminPanelController extends Controller
         return redirect()->back()->with('success', 'Η ημερομηνία λήξης ενημερώθηκε επιτυχώς!');
     }
 
+    public function toggleRegistration()
+    {
+        $setting = \App\Models\Setting::first();
+        $setting->registration_active = !$setting->registration_active;
+        $setting->save();
+
+        return back()->with('success', 'Η κατάσταση της εγγραφής ενημερώθηκε.');
+    }
+
     public function rejectRequest($id, Request $request)
     {
         $teamRequest = TeamRequest::findOrFail($id);

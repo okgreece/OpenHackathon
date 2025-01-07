@@ -43,5 +43,12 @@ class DatabaseSeeder extends Seeder
             'phase_name' => 'Παρουσίαση & Βραβεύσεις',
             'end_date' => '2025-05-18',
         ]);
+
+        DB::table('settings')->insert([
+            'id' => 1,
+            'registration_active' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

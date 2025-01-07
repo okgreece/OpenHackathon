@@ -162,6 +162,7 @@
                 </table>
             </div>
 
+            <!-- Enimerosi ton faseon toy diagonismou -->
             <table class="min-w-full bg-gray-50 border border-gray-200 rounded-lg shadow-md">
                 <thead>
                     <tr class="bg-blue-600 text-white">
@@ -179,7 +180,7 @@
                                 <form action="{{ route('admin.updateEndDate', $phase->id) }}" method="POST" class="inline-block">
                                     @csrf
                                     <input type="date" name="end_date" value="{{ $phase->end_date }}"
-                                        class="border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent">
+                                        class="border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent text-gray-600">
                                     <button type="submit"
                                         class="bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-green-700 transition duration-300 ml-2">
                                         Ενημέρωση
@@ -191,6 +192,32 @@
                 </tbody>
             </table>
 
+
+            <!-- Enimerosi toy registration -->
+            @php
+                $setting = \App\Models\Setting::first();
+            @endphp
+
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">Διαχείριση Εγγραφών</h2>
+                <p class="text-gray-600 mb-6">Ενεργοποιήστε ή απενεργοποιήστε τις εγγραφές για τον διαγωνισμό. Αν οι εγγραφές είναι απενεργοποιημένες, οι χρήστες δεν θα μπορούν να εγγραφούν.</p>
+
+                <form action="{{ route('admin.toggleRegistration') }}" method="POST" class="flex items-center justify-center space-x-4">
+                    @csrf
+                    <button type="submit" class="text-white py-3 px-6 rounded-lg transition duration-300 
+                    @if ($setting->registration_active)
+                        bg-red-600 hover:bg-red-700
+                    @else
+                        bg-green-600 hover:bg-green-700
+                    @endif">
+                        @if ($setting->registration_active)
+                            Απενεργοποίηση Εγγραφής
+                        @else
+                            Ενεργοποίηση Εγγραφής
+                        @endif
+                    </button>
+                </form>
+            </div>
 
             
             <!-- Αποσύνδεση -->

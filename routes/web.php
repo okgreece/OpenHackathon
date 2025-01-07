@@ -50,6 +50,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::delete('/delete-team/{team}', [AdminPanelController::class, 'deleteTeam'])->name('admin.delete.team');
     Route::delete('/delete-member/{member}', [AdminPanelController::class, 'deleteMember'])->name('admin.delete.member');
     Route::post('/admin/update-end-date/{id}', [AdminPanelController::class, 'updateEndDate'])->name('admin.updateEndDate');
+    Route::post('/admin/toggle-registration', [AdminPanelController::class, 'toggleRegistration'])->name('admin.toggleRegistration');
+
 
 });
 
