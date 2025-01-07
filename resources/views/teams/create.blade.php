@@ -39,16 +39,41 @@
 
             <!-- Περιβαλλοντολογικά Δεδομένα -->
             <div>
-                <label for="environmental_data" class="block text-gray-700 font-medium">Προτεινόμενα Περιβαλλοντολογικά Δεδομένα</label>
-                <select id="environmental_data" name="environmental_data" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400">
-                    <option value="" disabled selected>Επιλέξτε δεδομένα</option>
-                    <option value="climate_change">Δεδομένα Κλιματικής Αλλαγής</option>
-                    <option value="air_quality">Δεδομένα Ποιότητας Αέρα</option>
-                    <option value="water_pollution">Δεδομένα Ρύπανσης Νερού</option>
-                    <option value="biodiversity">Δεδομένα Βιοποικιλότητας</option>
-                    <option value="energy_consumption">Δεδομένα Κατανάλωσης Ενέργειας</option>
-                </select>
+                <label class="block text-gray-700 font-medium mb-2">Προτεινόμενα Περιβαλλοντολογικά Δεδομένα</label>
+                <div class="space-y-2">
+                    <label class="flex items-center">
+                        <input type="checkbox" name="environmental_data[]" value="climate_change" 
+                            class="form-checkbox text-green-500">
+                        <span class="ml-2 text-gray-700">Δεδομένα Κλιματικής Αλλαγής</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="checkbox" name="environmental_data[]" value="air_quality" 
+                            class="form-checkbox text-green-500">
+                        <span class="ml-2 text-gray-700">Δεδομένα Ποιότητας Αέρα</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="checkbox" name="environmental_data[]" value="water_pollution" 
+                            class="form-checkbox text-green-500">
+                        <span class="ml-2 text-gray-700">Δεδομένα Ρύπανσης Νερού</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="checkbox" name="environmental_data[]" value="biodiversity" 
+                            class="form-checkbox text-green-500">
+                        <span class="ml-2 text-gray-700">Δεδομένα Βιοποικιλότητας</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="checkbox" name="environmental_data[]" value="energy_consumption" 
+                            class="form-checkbox text-green-500">
+                        <span class="ml-2 text-gray-700">Δεδομένα Κατανάλωσης Ενέργειας</span>
+                    </label>
+                </div>
+                <div class="mt-4">
+                    <small class="block mt-2 text-gray-500 bg-blue-50 p-2 rounded-lg border border-blue-200">
+                        <strong>Tip:</strong> Μπορείτε να επιλέξετε έως 3 επιλογές. Τα δεδομένα είναι δειγματικά και δεν είναι υποχρεωτικό να χρησιμοποιήσετε αποκλειστικά αυτά για την υλοποίηση της εφαρμογής σας.
+                    </small>
+                </div>
             </div>
+
 
             <!-- Υποβολή -->
             <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-300 ease-in-out">Υποβολή Αίτησης</button>
@@ -59,6 +84,18 @@
             <a href="{{ route('dashboard') }}" class="text-green-600 hover:underline">Πίσω στο Dashboard</a>
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('input[name="environmental_data[]"]').forEach(input => {
+            input.addEventListener('change', () => {
+                const selected = document.querySelectorAll('input[name="environmental_data[]"]:checked');
+                if (selected.length > 3) {
+                    input.checked = false;
+                    alert('Μπορείτε να επιλέξετε έως 3 επιλογές.');
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

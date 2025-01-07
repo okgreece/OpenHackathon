@@ -14,4 +14,8 @@ class TeamRequest extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $casts = [
+        'environmental_data' => 'array', // Αυτόματο casting σε array
+    ];
 }

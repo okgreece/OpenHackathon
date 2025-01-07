@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->text('description')->nullable();
-            $table->string('environmental_data')->nullable();
+            $table->json('environmental_data')->change();
             $table->boolean('phase_completed')->default(false);
             $table->string('github_link')->nullable();
             $table->string('video_link')->nullable();

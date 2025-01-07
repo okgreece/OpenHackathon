@@ -22,15 +22,16 @@ class TeamController extends Controller
         $request->validate([
             'team_name' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
-            'environmental_data' => 'nullable|string|max:255',
+            'environmental_data' => 'array|max:3', // Επιτρέπει έως 3 επιλογές
+            'environmental_data.*' => 'string|in:climate_change,air_quality,water_pollution,biodiversity,energy_consumption',
         ]);
     
-       
+        // Δημιουργία νέου αιτήματος ομάδας
         $teamRequest = TeamRequest::create([
             'user_id' => auth()->id(),
             'team_name' => $request->team_name,
             'description' => $request->description,
-            'environmental_data' => $request->environmental_data,
+            'environmental_data' => json_encode($request->environmental_data),
             'status' => 'pending',
         ]);
     

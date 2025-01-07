@@ -91,8 +91,8 @@
                 <h3 class="text-2xl font-bold text-gray-800 mb-4">Αιτήσεις Δημιουργίας Ομάδων</h3>
                 <div class="space-y-4">
                     @foreach ($teamRequests as $request)
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h4 class="text-lg font-semibold">{{ $request->team_name }}</h4>
+                    <div class="bg-gray p-6 rounded-lg shadow-md">
+                        <h4 class="text-gray-600 text-lg font-semibold">{{ $request->team_name }}</h4>
                         <p class="text-gray-600">Από: {{ $request->user->name }}</p>
                         <p class="text-gray-600">Περιγραφή: {{ $request->description }}</p>
                         <p class="text-gray-600">Δεδομένα: {{ $request->environmental_data }}</p>
@@ -103,7 +103,7 @@
                         </form>
                         <form action="{{ route('admin.team-requests.reject', $request->id) }}" method="POST" class="inline-block">
                             @csrf
-                            <input type="text" name="rejection_reason" placeholder="Λόγος απόρριψης" class="border px-2 py-1 rounded">
+                            <input type="text" name="rejection_reason" placeholder="Λόγος απόρριψης" class="border px-2 py-1 rounded text-gray-600">
                             <button class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-400">Απόρριψη</button>
                         </form>
                     </div>
