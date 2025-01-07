@@ -89,22 +89,19 @@ class AdminPanelController extends Controller
     }
 
     //hackathon phases update
-    public function update(Request $request, $id)
+    public function updateEndDate(Request $request, $id)
     {
         $request->validate([
-            'phase_name' => 'required|string|max:255',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
+            'end_date' => 'required|date',
         ]);
 
-        $phase = HackathonPhase::findOrFail($id); // Εύρεση της φάσης με το id
-        $phase->update([
-            'phase_name' => $request->input('phase_name'),
-            'start_date' => $request->input('start_date'),
-            'end_date' => $request->input('end_date'),
-        ]);
+        $phase = HackathonPhase::findOrFail($id);
 
-        return redirect()->route('admin.hackathon-phases.index')->with('success', 'Η φάση ενημερώθηκε με επιτυχία.');
+        $phase->end_date = $request->input('end_date');
+        
+        $phase->save();
+
+        return redirect()->back()->with('success', 'Η ημερομηνία λήξης ενημερώθηκε επιτυχώς!');
     }
 
     public function rejectRequest($id, Request $request)

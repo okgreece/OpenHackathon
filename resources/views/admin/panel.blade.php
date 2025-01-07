@@ -110,6 +110,88 @@
                     @endforeach
                 </div>
             </div>
+
+            <!-- Ομάδες που κατάθεσαν -->
+            <div class="container mx-auto p-6">
+                <h1 class="text-2xl font-bold text-gray-800 mb-4">Ολοκληρωμένες Ομάδες</h1>
+
+                <table class="table-auto w-full bg-white rounded-lg shadow-md">
+                    <thead>
+                        <tr class="bg-gray-800">
+                            <th class="px-4 py-2">#</th>
+                            <th class="px-4 py-2">Όνομα Ομάδας</th>
+                            <th class="px-4 py-2">Περιγραφή</th>
+                            <th class="px-4 py-2">GitHub Link</th>
+                            <th class="px-4 py-2">Video Link</th>
+                            <th class="px-4 py-2">Ενέργειες</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                   <?php 
+                   use App\Models\Team;
+
+                   $teams = Team::where('phase_completed', true)->get(); ?>
+
+                        @forelse ($teams as $index => $team)
+                        <tr class="bg-gray-600 text-center border-b">
+                            <td class="px-4 py-2">{{ $index + 1 }}</td>
+                            <td class="px-4 py-2">{{ $team->name }}</td>
+                            <td class="px-4 py-2">{{ $team->app_description }}</td>
+                            <td class="px-4 py-2">
+                                <a href="{{ $team->github_link }}" class="text-blue-300 hover:underline" target="_blank">
+                                    GitHub Link
+                                </a>
+                            </td>
+                            <td class="px-4 py-2">
+                                <a href="{{ $team->video_link }}" class="text-blue-300 hover:underline" target="_blank">
+                                    Video Link
+                                </a>
+                            </td>
+                            <td class="px-4 py-2">
+                                <button class="bg-red-600 text-white py-1 px-3 rounded hover:bg-red-700">Διαγραφή</button>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="6" class="px-4 py-2 text-center text-gray-500">
+                                Δεν υπάρχουν ολοκληρωμένες ομάδες.
+                            </td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+
+            <table class="min-w-full bg-gray-50 border border-gray-200 rounded-lg shadow-md">
+                <thead>
+                    <tr class="bg-blue-600 text-white">
+                        <th class="px-6 py-3 border text-left text-sm font-medium uppercase tracking-wider">Φάση</th>
+                        <th class="px-6 py-3 border text-left text-sm font-medium uppercase tracking-wider">Ημερομηνία Λήξης</th>
+                        <th class="px-6 py-3 border text-center text-sm font-medium uppercase tracking-wider">Ενέργειες</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($phases as $phase)
+                        <tr class="{{ $loop->even ? 'bg-gray-100' : 'bg-white' }} hover:bg-gray-200 transition duration-200">
+                            <td class="px-6 py-4 border text-sm font-medium text-gray-900">{{ $phase->phase_name }}</td>
+                            <td class="px-6 py-4 border text-sm font-medium text-gray-700">{{ $phase->end_date }}</td>
+                            <td class="px-6 py-4 border text-center">
+                                <form action="{{ route('admin.updateEndDate', $phase->id) }}" method="POST" class="inline-block">
+                                    @csrf
+                                    <input type="date" name="end_date" value="{{ $phase->end_date }}"
+                                        class="border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent">
+                                    <button type="submit"
+                                        class="bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-green-700 transition duration-300 ml-2">
+                                        Ενημέρωση
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+
             
             <!-- Αποσύνδεση -->
             <div class="mt-10 text-right">
