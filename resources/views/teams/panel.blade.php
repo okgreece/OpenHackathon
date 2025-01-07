@@ -68,8 +68,24 @@
                     <h3 class="text-2xl font-semibold text-gray-800 mb-4">Φάση του Hackathon</h3>
                     <ul class="list-disc pl-6 text-gray-800 font-medium">
                         @foreach ($phases as $phase)
-                            <li class="{{ $currentPhase->id == $phase->id ? 'text-green-600 text-xl font-bold' : 'text-gray-800' }}">
+                            <li class="
+                                @if ($currentPhase->id == $phase->id) 
+                                    text-green-600 text-xl font-bold 
+                                @elseif (\Carbon\Carbon::parse($phase->end_date)->isPast())
+                                    text-red-600 text-xl font-bold
+                                @else 
+                                    text-gray-800
+                                @endif
+                            ">
                                 {{ $phase->phase_name }}
+                                
+                                @if ($currentPhase->id == $phase->id)
+                                    <span class="text-green-600 ml-2">- Τρέχουσα Φάση</span>
+                                @elseif (\Carbon\Carbon::parse($phase->end_date)->isPast())
+                                    <span class="text-red-600 ml-2">- Λήξη: {{ \Carbon\Carbon::parse($phase->end_date)->format('d-m-Y') }}</span>
+                                @else
+                                    <span class="text-gray-600 ml-2"></span>
+                                @endif
                             </li>
                         @endforeach
                     </ul>
