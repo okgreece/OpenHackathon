@@ -182,10 +182,24 @@
                 <h3 class="text-xl font-semibold text-gray-800 mb-4">Ολοκλήρωση Project</h3>
                 <form action="{{ route('team.completePhase', $team->id) }}" method="POST">
                     @csrf
+
+                    <!-- Σύνδεσμος GitHub -->
                     <label for="github_link" class="block text-gray-700 font-medium mb-2">Σύνδεσμος GitHub</label>
                     <input type="url" name="github_link" id="github_link" required 
-                    class="border-2 border-gray-800 px-4 py-2 rounded-md w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-black"
-                    placeholder="Εισάγετε το σύνδεσμο του GitHub σας">
+                        class="border-2 border-gray-800 px-4 py-2 rounded-md w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-black"
+                        placeholder="Εισάγετε το σύνδεσμο του GitHub σας">
+
+                    <!-- Σύνδεσμος Βίντεο -->
+                    <label for="video_link" class="block text-gray-700 font-medium mb-2">Σύνδεσμος Βίντεο</label>
+                    <input type="url" name="video_link" id="video_link" required 
+                        class="border-2 border-gray-800 px-4 py-2 rounded-md w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-black"
+                        placeholder="Εισάγετε το σύνδεσμο του βίντεο παρουσίασης">
+
+                    <!-- Περιγραφή Εφαρμογής -->
+                    <label for="app_description" class="block text-gray-700 font-medium mb-2">Περιγραφή Εφαρμογής</label>
+                    <textarea name="app_description" id="app_description" required 
+                        class="border-2 border-gray-800 px-4 py-2 rounded-md w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent text-black"
+                        placeholder="Γράψτε μια σύντομη περιγραφή για την εφαρμογή σας"></textarea>
 
                     <p class="text-gray-600 mb-4">Είστε σίγουροι ότι θέλετε να ολοκληρώσετε τη φάση; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.</p>
 
@@ -202,6 +216,7 @@
                 </form>
             </div>
         </div>
+
 
 
             <!-- Αποσύνδεση -->

@@ -15,8 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->text('description')->nullable();
+            $table->string('environmental_data')->nullable();
             $table->boolean('phase_completed')->default(false);
-            $table->string('github_link')->nullable()->after('phase_completed');
+            $table->string('github_link')->nullable();
+            $table->string('video_link')->nullable();
+            $table->text('app_description')->nullable();
             $table->timestamps();
         });
     }

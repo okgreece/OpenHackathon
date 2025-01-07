@@ -62,6 +62,8 @@ class TeamController extends Controller
     {
         $request->validate([
             'github_link' => 'required|url',
+            'video_link' => 'required|url',
+            'app_description' => 'required|string|max:1000',
         ]);
     
         $team = Team::findOrFail($teamId);
@@ -74,6 +76,8 @@ class TeamController extends Controller
         $team->update([
             'phase_completed' => true,
             'github_link' => $request->input('github_link'),
+            'video_link' => $request->input('video_link'),
+            'app_description' => $request->input('app_description'),
         ]);
     
         return redirect()->back()->with('success', 'Η φάση ολοκληρώθηκε με επιτυχία.');
