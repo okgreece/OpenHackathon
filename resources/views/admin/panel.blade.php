@@ -193,6 +193,43 @@
                 </tbody>
             </table>
 
+           
+            <!-- add user to team panel -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Ανάθεση Χρήστη σε Ομάδα</h3>
+
+                <!-- Εμφάνιση όλων των χρηστών -->
+                <form action="{{ route('admin.assignUserToTeam') }}" method="POST">
+                    @csrf
+
+                    <!-- Επιλογή Χρήστη -->
+                    <div class="mb-4">
+                        <label for="user_id" class="block text-gray-700 font-medium">Επιλογή Χρήστη</label>
+                        <select id="user_id" name="user_id" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-400 text-gray-700">
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->email }})</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Επιλογή Ομάδας -->
+                    <div class="mb-4">
+                        <label for="team_id" class="block text-gray-700 font-medium">Επιλογή Ομάδας</label>
+                        <select id="team_id" name="team_id" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-400 text-gray-700">
+                            @foreach ($teams as $team)
+                                <option value="{{ $team->id }}">{{ $team->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Υποβολή -->
+                    <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-500 transition duration-300">
+                        Ανάθεση
+                    </button>
+                </form>
+            </div>
+
+
 
             <!-- Enimerosi toy registration -->
             @php

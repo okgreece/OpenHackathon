@@ -34,9 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/hackathon-phases/update/{id}', [AdminPanelController::class, 'update'])->name('admin.hackathon-phases.update');    
 
     Route::post('/teams/join/{team}', [TeamController::class, 'join'])->name('teams.join');
-
     Route::get('/teams/{team}/panel', [TeamController::class, 'showPanel'])->name('teams.panel');
-
     Route::post('/team/{id}/complete-phase', [TeamController::class, 'completePhase'])->name('team.completePhase');
 
 
@@ -52,6 +50,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::post('/admin/update-end-date/{id}', [AdminPanelController::class, 'updateEndDate'])->name('admin.updateEndDate');
     Route::post('/admin/toggle-registration', [AdminPanelController::class, 'toggleRegistration'])->name('admin.toggleRegistration');
 
+    Route::post('/admin/assign-user-to-team', [AdminPanelController::class, 'assignUserToTeam'])->name('admin.assignUserToTeam');
 
 });
 

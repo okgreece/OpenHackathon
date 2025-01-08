@@ -16,12 +16,13 @@ class AdminPanelController extends Controller
     public function index()
     {
         $teams = Team::all();
+        $users = User::all();
 
         $members = TeamMember::with('user', 'team')->get();
         $teamRequests = TeamRequest::where('status', 'pending')->with('user')->get();
         $phases = HackathonPhase::all();  // Παίρνουμε όλες τις φάσεις
 
-        return view('admin.panel', compact('teams', 'teamRequests', 'members','phases'));
+        return view('admin.panel', compact('teams', 'teamRequests', 'members','phases','users'));
     }
 
     public function deleteTeam($id)
@@ -121,6 +122,44 @@ class AdminPanelController extends Controller
         $teamRequest->save();
 
         return redirect()->back();
+    }
+
+    // app/Http/Controllers/AdminController.php
+
+    public function assignUserToTeam(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'team_id' => 'required|exists:teams,id',
+        ]);
+
+        // Ελέγχουμε αν η ομάδα έχει ήδη 4 μέλη
+        $teamMembersCount = TeamMember::where('team_id', $request->team_id)->count();
+
+        if ($teamMembersCount >= 4) {
+            return redirect()->back()->withErrors(['team' => 'Η ομάδα έχει ήδη 4 μέλη.']);
+        }
+
+        // Ελέγχουμε αν ο χρήστης είναι ήδη μέλος μιας ομάδας
+        $existingMembership = TeamMember::where('user_id', $request->user_id)->first();
+
+        if ($existingMembership) {
+            return redirect()->back()->withErrors(['user' => 'Ο χρήστης ανήκει ήδη σε μία ομάδα.']);
+        }
+
+        // Προσθέτουμε τον χρήστη στον πίνακα team_members
+        TeamMember::create([
+            'user_id' => $request->user_id,
+            'team_id' => $request->team_id,
+            'role' => 'member', // Προαιρετικά, μπορείς να επιλέξεις ρόλο
+        ]);
+
+        // Ενημερώνουμε το team_id στον πίνακα users
+        User::where('id', $request->user_id)->update([
+            'team_id' => $request->team_id,
+        ]);
+
+        return redirect()->back()->with('success', 'Ο χρήστης προστέθηκε στην ομάδα με επιτυχία.');
     }
 
 

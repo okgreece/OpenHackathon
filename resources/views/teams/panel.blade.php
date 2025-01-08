@@ -24,8 +24,8 @@
         <div class="bg-white p-8 rounded-xl shadow-lg">
 
             <!-- Όνομα Ομάδας -->
-            <div class="bg-blue-600 p-4 mb-6 rounded-lg shadow-md">
-                <h2 class="text-4xl font-bold text-white">Panel Ομάδας: {{ $team->name }}</h2>
+            <div class="bg-blue-600 p-4 mb-6 rounded-lg shadow-md text-center mx-auto">
+                <h2 class="text-4xl font-bold text-white">Ομάδα: {{ $team->name }}</h2>
             </div>
 
             <!-- Λεπτομέρειες Ομάδας -->
