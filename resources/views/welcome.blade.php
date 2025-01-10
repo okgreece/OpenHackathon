@@ -71,7 +71,7 @@
 
     <footer class="bg-gray-600 text-white py-6 mt-16">
         <div class="container mx-auto text-center">
-            <p>&copy; 2025 OpenHackathon Management. Open Knowledge Foundation Greece.</p>
+            <p>&copy; {{ date('Y') }} OpenHackathon Management. Open Knowledge Foundation Greece.</p>
         </div>
     </footer>
 </body>
