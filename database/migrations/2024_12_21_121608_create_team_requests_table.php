@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('team_requests', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); // Συνδεδεμένο με τον χρήστη
-            $table->string('team_name'); // Όνομα προτεινόμενης ομάδας
-            $table->text('description')->nullable(); // Περιγραφή εφαρμογής
-            $table->string('environmental_data')->nullable(); // Επιλεγμένα δεδομένα
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending'); // Κατάσταση αίτησης
-            $table->text('rejection_reason')->nullable(); // Λόγος απόρριψης
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('team_name');
+            $table->text('description')->nullable();
+            $table->string('environmental_data')->nullable();
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->text('rejection_reason')->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

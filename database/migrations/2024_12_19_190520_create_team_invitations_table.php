@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('team_invitations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('team_id')->constrained()->onDelete('cascade');
+            $table->foreignId('team_id')->constrained('teams')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('leader_id')->constrained('users')->onDelete('cascade');
             $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending');

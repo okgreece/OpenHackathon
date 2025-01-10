@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->boolean('registration_active')->default(true); // Ενεργό από προεπιλογή
+            $table->boolean('registration_active')->default(true);
+            $table->timestamps();
         });
     }
 

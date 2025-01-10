@@ -24,6 +24,15 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
 
+        DB::table('admin_users')->insert([
+            'id' => 2,
+            'name' => 'lazaros',
+            'email' => 'lazaros@gmail.com',
+            'password' => bcrypt('lazaros123'), // Κρυπτογράφηση του κωδικού
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
         DB::table('hackathon_phases')->insert([
             'phase_name' => 'Εναρκτήρια Φάση',
             'end_date' => '2025-02-01',

@@ -17,10 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->unsignedBigInteger('team_id')->nullable();
-            $table->timestamps();
-
-            // $table->foreign('team_id')->references('id')->on('teams')->onDelete('set null');
-        
+            $table->timestamps();        
         });
     }
 
