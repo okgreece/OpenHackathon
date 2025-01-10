@@ -23,23 +23,11 @@
     <div class="max-w-7xl mx-auto p-6">
         <div class="bg-white p-8 rounded-xl shadow-lg">
 
-            <!-- Όνομα Ομάδας -->
-            <div class="bg-blue-600 p-4 mb-6 rounded-lg shadow-md text-center mx-auto">
-                <h2 class="text-4xl font-bold text-white">Ομάδα: {{ $team->name }}</h2>
-            </div>
+        <div class="bg-blue-600 p-4 mb-6 rounded-lg shadow-md text-center mx-auto">
+                <h2 class="text-4xl font-bold text-white">Live Παρακολούθηση Hackathon</h2>
+        </div>
 
-            <!-- Λεπτομέρειες Ομάδας -->
-            <div class="bg-gray-50 p-6 mb-6 rounded-lg shadow-md">
-                <h3 class="text-3xl font-semibold text-gray-700">Λεπτομέρειες Ομάδας</h3>
-                <p class="text-gray-700">{{ $team->description ?? 'Δεν έχει οριστεί περιγραφή.' }}</p>
-            </div>
-
-            <div class="bg-gray-50 p-6 mb-6 rounded-lg shadow-md">
-                <h3 class="text-3xl font-semibold text-gray-700">Περιβαλλοντολογικά Δεδομένα</h3>
-                <p class="text-gray-700">{{ $team->environmental_data ?? 'Δεν έχουν επιλεγεί δεδομένα.' }}</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                 <!-- Πίνακας Αντίστροφης Μέτρησης -->
                 <div class="bg-green-50 p-6 rounded-lg shadow-md">
                     <h3 class="text-2xl font-semibold text-gray-800 mb-4">Αντίστροφη Μέτρηση</h3>
@@ -90,6 +78,22 @@
                         @endforeach
                     </ul>
                 </div>
+            </div>
+
+            <!-- Όνομα Ομάδας -->
+            <div class="bg-blue-600 p-4 mb-6 rounded-lg shadow-md text-center mx-auto">
+                <h2 class="text-4xl font-bold text-white">Ομάδα: {{ $team->name }}</h2>
+            </div>
+
+            <!-- Λεπτομέρειες Ομάδας -->
+            <div class="bg-gray-50 p-6 mb-6 rounded-lg shadow-md">
+                <h3 class="text-3xl font-semibold text-gray-700">Λεπτομέρειες Ομάδας</h3>
+                <p class="text-gray-700">{{ $team->description ?? 'Δεν έχει οριστεί περιγραφή.' }}</p>
+            </div>
+
+            <div class="bg-gray-50 p-6 mb-6 rounded-lg shadow-md">
+                <h3 class="text-3xl font-semibold text-gray-700">Περιβαλλοντολογικά Δεδομένα</h3>
+                <p class="text-gray-700">{{ $team->environmental_data ?? 'Δεν έχουν επιλεγεί δεδομένα.' }}</p>
             </div>
 
             <div class="bg-white p-8 rounded-lg shadow-xl space-y-6">
@@ -160,7 +164,7 @@
 
         <!-- Φάση της Ομάδας -->
         <div class="{{ $team->phase_completed ? 'bg-green-100' : 'bg-purple-100' }} p-8 mb-6 rounded-lg shadow-md">
-            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Φάση της Ομάδας</h3>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Κατάθεση Project</h3>
 
             @if($team->phase_completed)
                 <!-- Κατάσταση ολοκλήρωσης -->
