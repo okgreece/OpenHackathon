@@ -27,28 +27,52 @@ Follow these steps to set up the project locally on your machine:
 
 ```bash
 git clone https://github.com/georgekazz/OpenHackathon.git
+```
 
+### 2. Install PHP dependencies
+```bash
 composer install
+```
 
+### 3. Install Javascript dependencies
+```bash
 npm install
+```
 
+### 4. Create a configuration file
+```bash
 cp .env.example .env
+```
 
-// Open the .env file and configure the following values according to your database:
+### 5. Create a database on your database server and keep notes of the connection parameters
+
+### 6. Open the .env file and configure the following values according to your database:
+```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=openhackathon
 DB_USERNAME=root
 DB_PASSWORD=
-
+```
+### 6. Run database migration to create the schema
+```bash
 php artisan migrate
+```
 
+### 7. Initialize the database with required data
+```bash   
 php artisan db:seed
+```
 
+### 8. Generate encryprion key
+```bash
 php artisan key:generate
+```
 
+### 7. Serve the application and head to your browser
+```bash
 php artisan serve
-
+```
 
 
