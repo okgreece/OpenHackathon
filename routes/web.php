@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 //ADMIN
-Route::middleware(['auth'])->prefix('admin')->group(function () {
+Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('/panel', [AdminPanelController::class, 'index'])->name('admin.panel');
     Route::post('/logout', [AdminPanelController::class, 'logout'])->name('admin.logout');
 
@@ -59,7 +59,7 @@ Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name
 Route::post('/admin/login', [AdminLoginController::class, 'login']);
 
 // Ομάδες και Αιτήσεις
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
     // Διαχείριση αιτήσεων ομάδων
     Route::post('/team-requests/{id}/approve', [AdminPanelController::class, 'approveRequest'])->name('team-requests.approve');
@@ -72,7 +72,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::delete('/delete-member/{member}', [AdminPanelController::class, 'deleteMember'])->name('delete.member');
     
     // Αποσύνδεση
-    Route::post('/logout', [AdminPanelController::class, 'logout'])->name('logout');
+    Route::post('admin/logout', [AdminPanelController::class, 'logout'])->name('admin.logout');
 });
 
 Route::middleware('auth')->group(function() {

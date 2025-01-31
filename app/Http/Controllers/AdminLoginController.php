@@ -19,24 +19,25 @@ class AdminLoginController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:6',
         ]);
-
+    
         // Αναζητούμε τον admin με το email
         $admin = AdminUser::where('email', $request->email)->first();
-
+    
         if (!$admin) {
             return back()->with('error', 'Λάθος email ή κωδικός.');
         }
-
+    
         // Έλεγχος του κωδικού
         if (password_verify($request->password, $admin->password)) {
-            Auth::login($admin); // Αυτό τώρα λειτουργεί με το μοντέλο AdminUser
-
+            Auth::guard('admin')->login($admin); // Χρησιμοποιούμε τον guard για admin
+    
             // Ανακατεύθυνση στο admin panel
             return redirect()->route('admin.panel');
         } else {
             return back()->with('error', 'Λάθος email ή κωδικός.');
         }
     }
+    
     
 
     public function logout()
