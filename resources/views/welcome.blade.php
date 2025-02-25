@@ -34,10 +34,7 @@
             flex: 1;
             margin-top: 100px; /* Adjusted for the header */
             padding-bottom: 120px; /* Space for the footer */
-        }
-        .dropdown-content {
-            display: none;
-        }
+        } 
         .image-container {
             display: flex;
             justify-content: center;
@@ -86,23 +83,27 @@
             </div>
         </section>
 
-        <h2 class="text-2xl font-extrabold text-center text-gray-800 mt-16 mb-4 uppercase tracking-wide shadow-lg hover:text-green-600 transition duration-300 ease-in-out">
+        <h2 class="text-3xl font-extrabold text-center text-gray-900 mt-16 mb-8 uppercase tracking-wide shadow-lg hover:text-green-600 transition duration-300 ease-in-out">
             Διοργανωτες
         </h2>
-        <div class="flex justify-center gap-8 mt-6">
-            <img src="{{ asset('/img/okfngr-logo.svg') }}" alt="Sponsor 2" class="w-60">
-            
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 place-items-center">
+            <img src="{{ asset('/img/okfngr-logo.svg') }}" alt="Sponsor 1" class="w-52">
+            <img src="{{ asset('/img/mdat-logo.svg') }}" alt="Sponsor 2" class="w-40">
+            <img src="{{ asset('/img/dimosThessalonikis.svg') }}" alt="Sponsor 3" class="w-52">
+            <img src="{{ asset('/img/ihu-logo.svg') }}" alt="Sponsor 4" class="w-52">
+            <img src="{{ asset('/img/elstat.svg') }}" alt="Sponsor 4" class="w-52">
         </div>
 
-        <h2 class="text-2xl font-extrabold text-center text-gray-800 mt-16 mb-4 uppercase tracking-wide shadow-lg hover:text-green-600 transition duration-300 ease-in-out">
+        <h2 class="text-3xl font-extrabold text-center text-gray-900 mt-16 mb-8 uppercase tracking-wide shadow-lg hover:text-green-600 transition duration-300 ease-in-out">
             Χορηγοι
         </h2>
-        <div class="flex justify-center gap-8 mt-6">
-            <img src="{{ asset('/img/okfngr-logo.svg') }}" alt="Sponsor 2" class="w-60">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 place-items-center">
+            <img src="{{ asset('/img/okfngr-logo.svg') }}" alt="Sponsor 1" class="w-52">
             <img src="{{ asset('/img/Deloitte.svg') }}" alt="Sponsor 2" class="w-32">
             <img src="{{ asset('/img/ots-logo.png') }}" alt="Sponsor 3" class="w-32">
             <img src="{{ asset('/img/lancom-logo.png') }}" alt="Sponsor 4" class="w-32">
         </div>
+
 
         <h2 class="text-2xl font-extrabold text-center text-gray-800 mt-16 mb-4 uppercase tracking-wide shadow-lg hover:text-green-600 transition duration-300 ease-in-out">
             Χορηγοι Επικοινωνιας
@@ -112,17 +113,23 @@
             <img src="{{ asset('/img/ert-logo.svg') }}" alt="Media Sponsor 2" class="w-32">
         </div>
 
-        <div class="mt-16">
-            <button onclick="toggleDropdown()" class="bg-green-800 text-white px-6 py-3 rounded hover:bg-green-700">Υποστηρικτές</button>
-            <div id="dropdown" class="dropdown-content bg-white p-6 mt-4 rounded-lg shadow-lg">
-                <div class="flex flex-wrap justify-center gap-8">
+        <div class="mt-16 text-center">
+            <button id="toggleButton" class="bg-green-800 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out shadow-md">
+                Υποστηρικτές
+            </button>
+            <div id="dropdown" class="dropdown-content bg-white p-6 mt-4 rounded-lg shadow-lg transition-all duration-500 ease-in-out transform scale-95 opacity-0 hidden">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 place-items-center">
                     <img src="{{ asset('/img/auth-logo.png') }}" alt="Υποστηρικτής 1" class="w-52">
                     <img src="{{ asset('/img/pamak-logo.png') }}" alt="Υποστηρικτής 2" class="w-32">
-                    <p class="text-gray-800">Υποστηρικτής 3</p>
+                    <img src="{{ asset('/img/okfngr-logo.svg') }}" alt="Sponsor 1" class="w-52">
+                    <img src="{{ asset('/img/dimosThessalonikis.svg') }}" alt="Sponsor 3" class="w-52">
+                    <img src="{{ asset('/img/elstat.svg') }}" alt="Sponsor 4" class="w-52">
+                    <img src="{{ asset('/img/ekbylogo.png') }}" alt="Υποστηρικτής 2" class="w-32">
+                    <img src="{{ asset('/img/limani-logo.png') }}" alt="Υποστηρικτής 2" class="w-32">
+                    <img src="{{ asset('/img/ipourgio-peribalontos.svg') }}" alt="Υποστηρικτής 2" class="w-32">
                 </div>
             </div>
         </div>
-
     </main>
 
     <footer class="bg-gray-800 text-white py-8 mt-16">
@@ -141,12 +148,21 @@
             </p>
         </div>
     </footer>
-
     <script>
-        function toggleDropdown() {
-            var dropdown = document.getElementById("dropdown");
-            dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
-        }
+            document.getElementById("toggleButton").addEventListener("click", function() {
+                var dropdown = document.getElementById("dropdown");
+                if (dropdown.classList.contains("hidden")) {
+                    dropdown.classList.remove("hidden");
+                    setTimeout(() => {
+                        dropdown.classList.remove("opacity-0", "scale-95");
+                        dropdown.classList.add("opacity-100", "scale-100");
+                    }, 10);
+                } else {
+                    dropdown.classList.remove("opacity-100", "scale-100");
+                    dropdown.classList.add("opacity-0", "scale-95");
+                    setTimeout(() => dropdown.classList.add("hidden"), 500);
+                }
+            });
     </script>
 </body>
 </html>
