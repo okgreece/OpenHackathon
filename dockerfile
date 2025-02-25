@@ -1,4 +1,4 @@
-FROM php:8.3-apache as web
+FROM php:8.3-apache AS web
 
 # Εγκατάσταση απαιτούμενων πακέτων
 RUN apt-get update && apt-get install -y \

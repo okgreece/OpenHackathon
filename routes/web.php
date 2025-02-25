@@ -45,8 +45,8 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('/panel', [AdminPanelController::class, 'index'])->name('admin.panel');
     Route::post('/logout', [AdminPanelController::class, 'logout'])->name('admin.logout');
 
-    Route::delete('/delete-team/{team}', [AdminPanelController::class, 'deleteTeam'])->name('admin.delete.team');
-    Route::delete('/delete-member/{member}', [AdminPanelController::class, 'deleteMember'])->name('admin.delete.member');
+    Route::delete('admin/delete-team/{team}', [AdminPanelController::class, 'deleteTeam'])->name('admin.delete.team');
+    Route::delete('/admin/delete-member/{member}', [AdminPanelController::class, 'deleteMember'])->name('admin.delete.member');
     Route::post('/admin/update-end-date/{id}', [AdminPanelController::class, 'updateEndDate'])->name('admin.updateEndDate');
     Route::post('/admin/toggle-registration', [AdminPanelController::class, 'toggleRegistration'])->name('admin.toggleRegistration');
 
