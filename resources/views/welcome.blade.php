@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hackathon Management System</title>
+    <title>OpenUP Hackathon</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="icon" href="{{ asset('/img/logoonly.svg') }}">
     <style>
@@ -12,7 +12,7 @@
             display: flex;
             flex-direction: column;
             background: linear-gradient(rgb(0, 173, 101), rgb(36, 173, 109));
-            padding-top: 20px; /* Reduced space for header */
+            padding-top: 20px;
             margin: 0;
         }
         header, footer {
@@ -21,7 +21,7 @@
         }
         header {
             background: linear-gradient(rgb(0, 173, 101), rgb(36, 173, 109));
-            padding: 12px 0; /* Reduced padding */
+            padding: 12px 0;
             z-index: 100;
         }
         footer {
@@ -32,8 +32,8 @@
         }
         main {
             flex: 1;
-            margin-top: 100px; /* Adjusted for the header */
-            padding-bottom: 120px; /* Space for the footer */
+            margin-top: 100px;
+            padding-bottom: 120px;
         } 
         .image-container {
             display: flex;
@@ -43,17 +43,18 @@
     </style>
 </head>
 <body class="bg-gray-200 font-sans">
-    <header class="bg-green-600 text-white py-3 z-50"> <!-- Μειωμένο padding -->
+    <header class="bg-green-600 text-white py-3 z-50">
         <div class="container mx-auto flex justify-between items-center px-6">
-            <h1 class="text-2xl font-bold">Hackathon Management</h1> <!-- Ρυθμισμένο μέγεθος γραμματοσειράς -->
+            <h1 class="text-2xl font-bold">OpenUP Hackathon</h1>
             <nav>
+                <a href="./about" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out">Σχετικά</a>
                 <a href="https://tds.okfn.gr/" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out">Open Data Marketplace</a>
                 <a href="./login" class="bg-green-800 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out">Είσοδος</a>
             </nav>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 py-2 text-center"> <!-- Μειωμένο padding top -->
+    <main class="container mx-auto px-6 py-2 text-center">
         <div class="image-container">
             <img src="{{ asset('/img/openuplogo.svg') }}" alt="OpenUp Thessaloniki Climate 2025" class="logo-img">
         </div>
@@ -83,34 +84,58 @@
             </div>
         </section>
 
-        <h2 class="text-3xl font-extrabold text-center text-gray-900 mt-16 mb-8 uppercase tracking-wide shadow-lg hover:text-green-600 transition duration-300 ease-in-out">
+        <h2 class="text-3xl font-extrabold text-center text-gray-900 mt-16 mb-8 uppercase tracking-wide shadow-lg hover:text-gray-100 transition duration-300 ease-in-out">
             Διοργανωτες
         </h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 place-items-center">
-            <img src="{{ asset('/img/okfngr-logo.svg') }}" alt="Sponsor 1" class="w-52">
-            <img src="{{ asset('/img/mdat-logo.svg') }}" alt="Sponsor 2" class="w-40">
-            <img src="{{ asset('/img/dimosThessalonikis.svg') }}" alt="Sponsor 3" class="w-52">
-            <img src="{{ asset('/img/ihu-logo.svg') }}" alt="Sponsor 4" class="w-52">
-            <img src="{{ asset('/img/elstat.svg') }}" alt="Sponsor 4" class="w-52">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-8 place-items-center">
+            <a href="https://okfn.gr" target="_blank" rel="noopener noreferrer">
+                <img src="{{ asset('/img/okfngr-logo.svg') }}" alt="Sponsor 1" class="w-52 hover:scale-105 transition duration-300">
+            </a>
+            <a href="https://mdat.gr/" target="_blank" rel="noopener noreferrer">
+                <img src="{{ asset('/img/mdat-logo.svg') }}" alt="Sponsor 2" class="w-28 hover:scale-105 transition duration-300">
+            </a>
+            <a href="https://thessaloniki.gr" target="_blank" rel="noopener noreferrer">
+                <img src="{{ asset('/img/dimosThessalonikis.svg') }}" alt="Sponsor 3" class="w-52 hover:scale-105 transition duration-300">
+            </a>
+            <a href="https://www.ihu.gr" target="_blank" rel="noopener noreferrer">
+                <img src="{{ asset('/img/ihu-logo.svg') }}" alt="Sponsor 4" class="w-52 hover:scale-105 transition duration-300">
+            </a>
+            <a href="https://www.statistics.gr" target="_blank" rel="noopener noreferrer" class="col-span-full md:col-span-1 flex justify-center">
+                <img src="{{ asset('/img/elstat.svg') }}" alt="Sponsor 5" class="w-52 hover:scale-105 transition duration-300">
+            </a>
         </div>
 
-        <h2 class="text-3xl font-extrabold text-center text-gray-900 mt-16 mb-8 uppercase tracking-wide shadow-lg hover:text-green-600 transition duration-300 ease-in-out">
+
+
+        <h2 class="text-3xl font-extrabold text-center text-gray-100 mt-16 mb-8 uppercase tracking-wide shadow-lg hover:text-green-900 transition duration-300 ease-in-out">
             Χορηγοι
         </h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 place-items-center">
-            <img src="{{ asset('/img/okfngr-logo.svg') }}" alt="Sponsor 1" class="w-52">
-            <img src="{{ asset('/img/Deloitte.svg') }}" alt="Sponsor 2" class="w-32">
-            <img src="{{ asset('/img/ots-logo.png') }}" alt="Sponsor 3" class="w-32">
-            <img src="{{ asset('/img/lancom-logo.png') }}" alt="Sponsor 4" class="w-32">
+            <a href="https://okfn.gr" target="_blank" rel="noopener noreferrer">
+                <img src="{{ asset('/img/okfngr-logo.svg') }}" alt="Sponsor 1" class="w-52 hover:scale-105 transition duration-300">
+            </a>
+            <a href="https://www2.deloitte.com/" target="_blank" rel="noopener noreferrer">
+                <img src="{{ asset('/img/Deloitte.svg') }}" alt="Sponsor 2" class="w-32 hover:scale-105 transition duration-300">
+            </a>
+            <a href="https://www.ots.gr" target="_blank" rel="noopener noreferrer">
+                <img src="{{ asset('/img/ots-logo.png') }}" alt="Sponsor 3" class="w-32 hover:scale-105 transition duration-300">
+            </a>
+            <a href="https://www.lancom.gr" target="_blank" rel="noopener noreferrer">
+                <img src="{{ asset('/img/lancom-logo.png') }}" alt="Sponsor 4" class="w-32 hover:scale-105 transition duration-300">
+            </a>
         </div>
 
 
-        <h2 class="text-2xl font-extrabold text-center text-gray-800 mt-16 mb-4 uppercase tracking-wide shadow-lg hover:text-green-600 transition duration-300 ease-in-out">
+        <h2 class="text-2xl font-extrabold text-center text-gray-100 mt-16 mb-4 uppercase tracking-wide shadow-lg hover:text-green-900 transition duration-300 ease-in-out">
             Χορηγοι Επικοινωνιας
         </h2>
-        <div class="flex justify-center gap-8 mt-6">
-            <img src="{{ asset('/img/makedonia-logo.svg') }}" alt="Media Sponsor 1" class="w-52">
-            <img src="{{ asset('/img/ert-logo.svg') }}" alt="Media Sponsor 2" class="w-32">
+        <div class="flex justify-center items-center gap-8 mt-6">
+            <a href="https://www.makthes.gr/" target="_blank" rel="noopener noreferrer">
+                <img src="{{ asset('/img/makedonia-logo.svg') }}" alt="Media Sponsor 1" class="w-52 h-auto object-contain hover:scale-105 transition duration-300">
+            </a>
+            <a href="https://www.ert.gr/" target="_blank" rel="noopener noreferrer">
+                <img src="{{ asset('/img/ert-logo.svg') }}" alt="Media Sponsor 2" class="w-32 h-auto object-contain hover:scale-105 transition duration-300">
+            </a>
         </div>
 
         <div class="mt-16 text-center">

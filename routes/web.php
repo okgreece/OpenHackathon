@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,9 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/about', [AboutController::class, 'index']);
+Route::get('/about', [AboutController::class, 'aboutShowPanel'])->name('about');
+
 
 Route::middleware(['auth'])->group(function () {
 
