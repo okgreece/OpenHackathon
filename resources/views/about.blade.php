@@ -30,7 +30,7 @@
         }
 
         footer {
-            background: linear-gradient(rgb(0, 173, 101), rgb(36, 173, 109));
+            background: linear-gradient(rgb(0, 173, 101), rgb(12, 105, 62));
             padding-top: 50px;
             padding-bottom: 30px;
             z-index: 100;
@@ -71,17 +71,36 @@
             font-weight: bold;
             font-size: 1.5rem;
         }
+
+        .glitter {
+            position: relative;
+            color: #FF5F00;
+            font-weight: bold;
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.6), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.6);
+            }
+
+            100% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+            }
+        }
     </style>
 </head>
 
 <body class="bg-gray-200 font-sans">
     <header class="bg-green-600 text-white py-3 z-50">
         <div class="container mx-auto flex justify-between items-center px-6">
-            <h1 class="text-2xl font-bold">OpenUP Hackathon</h1>
+            <a href="javascript:window.history.back();">
+                <h1 class="text-2xl font-bold">OpenUP Hackathon</h1>
+            </a>
             <nav>
                 <a href="./about"
                     class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out">Σχετικά</a>
-                <a href="https://tds.okfn.gr/"
+                <a href="https://tds.okfn.gr/" target="_blank"
                     class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out">Open
                     Data Marketplace</a>
                 <a href="./login"
@@ -92,16 +111,10 @@
 
     <main class="container mx-auto px-6 py-8">
 
-        <!-- Animated arrow -->
-        <div class="flex justify-center mt-12">
-            <a href="./" class="text-gray-100 text-3xl arrow">
-                &#8593; Πίσω στην Αρχική Σελίδα
-            </a>
-        </div>
         <!-- About section -->
         <h2
-            class="text-4xl font-extrabold text-center text-gray-900 mt-16 mb-8 uppercase tracking-wide shadow-lg hover:text-gray-100 transition duration-300 ease-in-out">
-            Σχετικα με το Hackathon
+            class="text-4xl font-extrabold text-center text-gray-100 mt-16 mb-8 uppercase tracking-wide shadow-lg hover:text-gray-900 transition duration-300 ease-in-out">
+            Σχετικα με τον Διαγωνισμό
         </h2>
 
         <div class="text-center">
@@ -129,7 +142,8 @@
 
                 <!-- Πίνακας Αντίστροφης Μέτρησης -->
                 <div class="overflow-hidden bg-green-50 p-6 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Αντίστροφη Μέτρηση</h3>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">Αντίστροφη Μέτρηση για την επόμενη
+                        φάση του διαγωνισμού</h3>
                     <div id="countdown" class="grid grid-cols-2 gap-8 text-center text-gray-800 text-xl font-bold">
                         <div class="bg-green-100 p-4 rounded-lg shadow-md">
                             <p id="months" class="text-3xl text-green-600 font-extrabold"></p>
@@ -157,14 +171,14 @@
                     <ul class="list-disc pl-6 text-gray-800 font-medium text-center">
                         @foreach ($phases as $phase)
                             <li class="
-                                                                                            @if ($currentPhase->id == $phase->id) 
-                                                                                                text-green-600 text-xl font-bold 
-                                                                                            @elseif (\Carbon\Carbon::parse($phase->end_date)->isPast())
-                                                                                                text-red-600 text-xl font-bold
-                                                                                            @else 
-                                                                                                text-gray-800
-                                                                                            @endif
-                                                                                        ">
+                                @if ($currentPhase->id == $phase->id) 
+                                    text-green-600 text-xl font-bold 
+                                @elseif (\Carbon\Carbon::parse($phase->end_date)->isPast())
+                                    text-red-600 text-xl font-bold
+                                @else 
+                                    text-gray-800
+                                @endif
+                                 ">
                                 {{ $phase->phase_name }}
 
                                 @if ($currentPhase->id == $phase->id)
@@ -207,35 +221,60 @@
                         επάθλων, ολοκληρώνοντας τη διαδικασία με επιτυχία.</li>
 
                 </ul>
+                <p class="text-gray-700 mt-4">
+                    Διεκδίκησε με την ομάδα σου χρηματικά έπαθλα, με την 1η θέση να κερδίζει <strong
+                        class="glitter">3.000€</strong>, τη 2η θέση <strong class="glitter">2.000€</strong> και τη 3η
+                    θέση <strong class="glitter">1.000€</strong>.
+                </p>
             </div>
 
             <div>
                 <h3 class="text-2xl font-semibold text-gray-800">Τι είναι το Open Data Marketplace</h3>
-                <p class="text-gray-700 mt-4 text-justify">Η πλατφόρμα Open Data Marketplace (TDS) είναι μια ανοιχτή
+                <p class="text-gray-700 mt-4 text-justify">Η πλατφόρμα Open Data Marketplace (ODM) είναι μια ανοιχτή
                     πηγή δεδομένων
-                    που συγκεντρώνει και παρέχει δεδομένα σχετικά με το περιβάλλον, την υγεία, την επιστήμη, τις
-                    τεχνολογίες και άλλες κατηγορίες. Σκοπός της είναι να προσφέρει πρόσβαση σε σημαντικά δεδομένα για
+                    που συγκεντρώνει και παρέχει ανοικτά δεδομένα. Σκοπός της είναι να προσφέρει πρόσβαση σε σημαντικά
+                    δεδομένα για
                     την ανάπτυξη καινοτόμων εφαρμογών, με ιδιαίτερη έμφαση στην κλιματική αλλαγή και την προστασία του
                     περιβάλλοντος. Χρησιμοποιώντας αυτά τα δεδομένα, οι συμμετέχοντες μπορούν να δημιουργήσουν λύσεις
                     που βοηθούν στην αντιμετώπιση των περιβαλλοντικών προκλήσεων. Η εγγραφή στην πλατφόρμα είναι
-                    υποχρεωτική καθώς επίσης και η χρήση τουλάχιστον ενός dataset για την υλοποίηση της εφαρμογής.</p>
+                    υποχρεωτική καθώς επίσης και η χρήση <strong>τουλάχιστον ενός dataset</strong> για την υλοποίηση της
+                    εφαρμογής. Το ODM παρέχει προηγμένα plugins, όπως Negotiation, Discovery και
+                    Environmental Plugin, που αναπτύχθηκαν μέσω του <strong>ευρωπαϊκού έργου UPCAST</strong>. Αυτά τα
+                    εργαλεία
+                    διευκολύνουν τη διαπραγμάτευση, την ανακάλυψη και την απόκτηση δεδομένων με αποτελεσματικό τρόπο.
+                    Επιπλέον, το ODM διαθέτει ένα σύγχρονο και φιλικό προς τον χρήστη UI, επιτρέποντας εύκολη πλοήγηση
+                    και εξερεύνηση των δεδομένων, τα οποία είναι οργανωμένα σε κατηγορίες για καλύτερη πρόσβαση.
+                    Υποστηρίζει επίσης προηγμένες λειτουργίες αναζήτησης, ενισχύοντας τη
+                    διαλειτουργικότητα και τη χρήση δεδομένων.</p>
             </div>
 
             <div>
                 <h3 class="text-2xl font-semibold text-gray-800">Γίνε υποστηρικτής του διαγωνισμού παρέχοντας δεδομένα
                 </h3>
-                <p class="text-gray-700 mt-4 text-justify">Η ενίσχυση της συνεργασίας μεταξύ καινοτόμων και η προώθηση
-                    της
-                    βιωσιμότητας στην κοινωνία μέσω της τεχνολογίας και των δεδομένων.</p>
+                <p class="text-gray-700 mt-4 text-justify">Ο διαγωνισμός <strong>OpenUp Climate Thessaloniki
+                        2025</strong> δίνει τη
+                    δυνατότητα σε οργανισμούς να προσφέρουν τα δικά τους δεδομένα ανοιχτά, τόσο κατά τη διάρκεια του
+                    διαγωνισμού όσο και μετά την ολοκλήρωσή του. Αν εκπροσωπείς έναν οργανισμό που διαθέτει δεδομένα και
+                    θέλει να συμβάλει, μπορείς να συμπληρώσεις τη Google Φόρμα στον παρακάτω
+                    σύνδεσμο. Η ομάδα μας θα επικοινωνήσει μαζί σου το συντομότερο για να προσθέσει τα δεδομένα και τον
+                    οργανισμό σου στο Open Data Marketplace.
+                    <a href="https://forms.gle/KhAKce2CeTqwCsiT6" class="text-gray-200 font-semibold hover:underline"
+                        target="_blank">➡ Συμπλήρωσε τη φόρμα εδώ</a>
+                </p>
             </div>
 
             <div>
                 <h3 class="text-2xl font-semibold text-gray-800">Κριτική Επιτροπή</h3>
-                <p class="text-gray-700 mt-4 text-justify">Η ενίσχυση της συνεργασίας μεταξύ καινοτόμων και η προώθηση
-                    της
-                    βιωσιμότητας στην κοινωνία μέσω της τεχνολογίας και των δεδομένων.</p>
+                <p class="text-gray-700 mt-4 text-justify">Θα ανακοινωθεί.</p>
             </div>
 
+        </div>
+
+        <!-- Animated arrow -->
+        <div class="flex justify-center mt-12">
+            <a href="./" class="text-gray-100 text-3xl arrow">
+                &#8593; Πίσω στην Αρχική Σελίδα
+            </a>
         </div>
     </main>
 
