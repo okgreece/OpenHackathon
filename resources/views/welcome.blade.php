@@ -50,7 +50,7 @@
 
         .glitter {
             position: relative;
-            color:rgb(22, 119, 114);
+            color: rgb(22, 119, 114);
             font-weight: bold;
             animation: glow 1.5s ease-in-out infinite alternate;
         }
@@ -115,9 +115,9 @@
                 </h3>
                 <p class="text-gray-600 mt-4">
                     Διεκδικήστε με την ομάδα σας τις πρώτες θέσεις για να κερδίσετε χρηματικά έπαθλα:
-                    <span class="font-semibold glitter">3,000€</span> για την 1η θέση,
-                    <span class="font-semibold glitter">2,000€</span> για τη 2η θέση και
-                    <span class="font-semibold glitter">1,000€</span> για την 3η θέση.
+                    <span class="font-semibold glitter">3.000€</span> για την 1η θέση,
+                    <span class="font-semibold glitter">2.000€</span> για τη 2η θέση και
+                    <span class="font-semibold glitter">1.000€</span> για την 3η θέση.
                 </p>
             </div>
         </section>
@@ -195,15 +195,20 @@
             Χορηγοι Επικοινωνιας
         </h2>
         <div class="flex justify-center items-center gap-8 mt-6">
-            <a href="https://www.makthes.gr/" target="_blank" rel="noopener noreferrer">
-                <img src="{{ asset('/img/makedonia-logo.svg') }}" alt="Media Sponsor 1"
-                    class="w-52 h-auto object-contain hover:scale-105 transition duration-300">
-            </a>
-            <a href="https://www.ert.gr/" target="_blank" rel="noopener noreferrer">
-                <img src="{{ asset('/img/ert-logo.svg') }}" alt="Media Sponsor 2"
-                    class="w-32 h-auto object-contain hover:scale-105 transition duration-300">
-            </a>
+            <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                <a href="https://www.ert.gr/" target="_blank" rel="noopener noreferrer">
+                    <img src="{{ asset('/img/ert-logo.svg') }}" alt="Media Sponsor 2"
+                        class="w-32 h-auto object-contain hover:scale-105 transition duration-300">
+                </a>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                <a href="https://www.makthes.gr/" target="_blank" rel="noopener noreferrer">
+                    <img src="{{ asset('/img/makedonia-logo.svg') }}" alt="Media Sponsor 1"
+                        class="w-52 h-auto object-contain hover:scale-105 transition duration-300">
+                </a>
+            </div>
         </div>
+
 
         <div class="mt-16 text-center">
             <button id="toggleButton"
