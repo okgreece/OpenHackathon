@@ -1,4 +1,4 @@
-networks:
+  GNU nano 7.2                ../OpenHackathon/docker-compose.yml                         networks:
   traefik-net:
     external: true
 
@@ -10,9 +10,8 @@ services:
     container_name: laravel-app
     restart: always
     working_dir: /var/www/html
-
-    ports:
-      - "8000:80"
+    expose:
+      - "80"
     environment:
       APP_ENV: local
       APP_DEBUG: "true"
@@ -26,10 +25,17 @@ services:
       SESSION_DRIVER: database
       CACHE_DRIVER: file
       QUEUE_DRIVER: database
+    networks:
+      - traefik-net
     depends_on:
       db:
         condition: service_healthy
-
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.webapp.rule=Host(`openup.okfn.gr`)" # Change to your domain
+      - "traefik.http.routers.webapp.entrypoints=websecure"
+      - "traefik.http.routers.webapp.tls=true"
+      - "traefik.http.services.webapp.loadbalancer.server.port=80"
   db:
     image: mysql:8.0
     container_name: laravel-db
@@ -43,10 +49,9 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - traefik-net  
+      - traefik-net
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "--host=localhost", "--user=root", "--password=root"]
-      interval: 10s
+      test: ["CMD", "mysqladmin", "ping", "--host=localhost", "--user=root", "--password=>      interval: 10s
       retries: 5
 
 volumes:
