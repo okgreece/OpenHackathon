@@ -136,10 +136,10 @@
                                 class="w-40 mx-auto transition-transform transform hover:scale-105 hover:shadow-lg rounded-lg">
                         </a>
                     </td>
-                    <td class="p-2">
-                        <a href="https://mdat.gr/" target="_blank" rel="noopener noreferrer">
-                            <img src="{{ asset('/img/mdat-logo.svg') }}" alt="Sponsor 2"
-                                class="w-32 mx-auto transition-transform transform hover:scale-105 hover:shadow-lg rounded-lg">
+                    <td class="p-4">
+                        <a href="https://www.statistics.gr" target="_blank" rel="noopener noreferrer">
+                            <img src="{{ asset('/img/elstat.svg') }}" alt="Sponsor 5"
+                                class="w-40 mx-auto transition-transform transform hover:scale-105 hover:shadow-lg rounded-lg">
                         </a>
                     </td>
                     <td class="p-4">
@@ -156,10 +156,10 @@
                                 class="w-40 mx-auto transition-transform transform hover:scale-105 hover:shadow-lg rounded-lg">
                         </a>
                     </td>
-                    <td class="p-4">
-                        <a href="https://www.statistics.gr" target="_blank" rel="noopener noreferrer">
-                            <img src="{{ asset('/img/elstat.svg') }}" alt="Sponsor 5"
-                                class="w-40 mx-auto transition-transform transform hover:scale-105 hover:shadow-lg rounded-lg">
+                    <td class="p-2">
+                        <a href="https://mdat.gr/" target="_blank" rel="noopener noreferrer">
+                            <img src="{{ asset('/img/mdat-logo.svg') }}" alt="Sponsor 2"
+                                class="w-32 mx-auto transition-transform transform hover:scale-105 hover:shadow-lg rounded-lg">
                         </a>
                     </td>
                 </tr>
@@ -226,6 +226,7 @@
                     <img src="{{ asset('/img/ekbylogo.png') }}" alt="Υποστηρικτής 2" class="w-32">
                     <img src="{{ asset('/img/limani-logo.png') }}" alt="Υποστηρικτής 2" class="w-32">
                     <img src="{{ asset('/img/ipourgio-peribalontos.svg') }}" alt="Υποστηρικτής 2" class="w-32">
+                    <img src="{{ asset('/img/eyath-logo.png') }}" alt="Υποστηρικτής 2" class="w-32">
                 </div>
             </div>
         </div>
