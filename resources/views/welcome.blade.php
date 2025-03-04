@@ -190,24 +190,28 @@
         </div>
 
 
-        <h2
-            class="text-2xl font-extrabold text-center text-gray-100 mt-16 mb-4 uppercase tracking-wide shadow-lg hover:text-green-900 transition duration-300 ease-in-out">
+        <h2 class="text-2xl font-extrabold text-center text-gray-100 mt-16 mb-6 uppercase tracking-wide shadow-md hover:text-gray-900 transition duration-300 ease-in-out">
             Χορηγοι Επικοινωνιας
         </h2>
-        <div class="flex justify-center items-center gap-8 mt-6">
-            <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+
+        <div class="flex flex-wrap justify-center items-center gap-6 mt-6">
+            <div class="bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition duration-300">
                 <a href="https://www.ert.gr/" target="_blank" rel="noopener noreferrer">
-                    <img src="{{ asset('/img/ert-logo.svg') }}" alt="Media Sponsor 2"
-                        class="w-32 h-auto object-contain hover:scale-105 transition duration-300">
+                    <img src="{{ asset('/img/ert-logo.svg') }}" alt="ERT" class="w-36 h-auto object-contain hover:scale-110 transition duration-300">
                 </a>
             </div>
-            <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+            <div class="bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition duration-300">
+                <a href="https://www.ert.gr/" target="_blank" rel="noopener noreferrer">
+                    <img src="{{ asset('/img/radioert3-logo.png') }}" alt="Radio ERT3" class="w-36 h-auto object-contain hover:scale-110 transition duration-300">
+                </a>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition duration-300">
                 <a href="https://www.makthes.gr/" target="_blank" rel="noopener noreferrer">
-                    <img src="{{ asset('/img/makedonia-logo.svg') }}" alt="Media Sponsor 1"
-                        class="w-52 h-auto object-contain hover:scale-105 transition duration-300">
+                    <img src="{{ asset('/img/makedonia-logo.svg') }}" alt="Μακεδονία" class="w-44 h-auto object-contain hover:scale-110 transition duration-300">
                 </a>
             </div>
         </div>
+
 
 
         <div class="mt-16 text-center">
