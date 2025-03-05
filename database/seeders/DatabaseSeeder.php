@@ -34,22 +34,17 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('hackathon_phases')->insert([
-            'phase_name' => 'Εναρκτήρια Φάση',
+            'phase_name' => 'Υποβολή Συμμετοχής',
             'end_date' => '2025-02-01',
         ]);
 
         DB::table('hackathon_phases')->insert([
-            'phase_name' => 'Φάση Υλοποίησης',
+            'phase_name' => 'Τελική Υποβολή Εφαρμογών',
             'end_date' => '2025-03-15',
         ]);
 
         DB::table('hackathon_phases')->insert([
-            'phase_name' => 'Τελική Κατάθεση',
-            'end_date' => '2025-04-15',
-        ]);
-
-        DB::table('hackathon_phases')->insert([
-            'phase_name' => 'Παρουσίαση & Βραβεύσεις',
+            'phase_name' => 'Παρουσίαση & Βράβευση',
             'end_date' => '2025-05-18',
         ]);
 

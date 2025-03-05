@@ -129,7 +129,7 @@
                 </div>
 
                 <!-- Deloitte -->
-                <div class="p-4 bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 rounded-lg shadow-md flex justify-center items-center">
+                <div class="p-4 bg-white rounded-lg shadow-md flex justify-center items-center">
                     <a href="https://www2.deloitte.com/" target="_blank" rel="noopener noreferrer">
                         <img src="{{ asset('/img/Deloitte.svg') }}" alt="Sponsor 2"
                             class="w-40 hover:scale-105 transition duration-300 mx-auto">
@@ -145,7 +145,7 @@
                 </div>
 
                 <!-- Lancom -->
-                <div class="p-4 bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 rounded-lg shadow-md flex justify-center items-center">
+                <div class="p-4 bg-gray-800 rounded-lg shadow-md flex justify-center items-center">
                     <a href="https://www.lancom.gr" target="_blank" rel="noopener noreferrer">
                         <img src="{{ asset('/img/lancom-logo.png') }}" alt="Sponsor 4"
                             class="w-40 hover:scale-105 transition duration-300 mx-auto">

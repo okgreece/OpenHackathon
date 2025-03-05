@@ -27,58 +27,63 @@
                 <h2 class="text-4xl font-bold text-white">Live Παρακολούθηση Hackathon</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
-                <!-- Πίνακας Αντίστροφης Μέτρησης -->
-                <div class="bg-green-50 p-6 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Αντίστροφη Μέτρηση</h3>
-                    <div id="countdown" class="text-gray-800 text-xl font-bold grid grid-cols-2 gap-4">
-                        <div>
-                            <p id="months" class="text-3xl text-green-600"></p>
-                            <span>Μήνες</span>
-                        </div>
-                        <div>
-                            <p id="days" class="text-3xl text-green-600"></p>
-                            <span>Μέρες</span>
-                        </div>
-                        <div>
-                            <p id="hours" class="text-3xl text-green-600"></p>
-                            <span>Ώρες</span>
-                        </div>
-                        <div>
-                            <p id="minutes" class="text-3xl text-green-600"></p>
-                            <span>Λεπτά</span>
+        <section class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <div class="flex space-x-6">
+                <div class="w-1/2">
+                    <!-- Πίνακας Αντίστροφης Μέτρησης -->
+                    <div class="overflow-hidden bg-green-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-3xl font-extrabold text-gray-800 text-center mb-6">Αντίστροφη Μέτρηση για την επόμενη
+                            φάση του διαγωνισμού</h3>
+                        <div id="countdown" class="grid grid-cols-2 gap-8 text-center text-gray-800 text-xl font-bold">
+                            <div class="bg-green-100 p-4 rounded-lg shadow-md">
+                                <p id="months" class="text-3xl text-green-600 font-extrabold"></p>
+                                <span class="text-sm text-gray-600">Μήνες</span>
+                            </div>
+                            <div class="bg-green-100 p-4 rounded-lg shadow-md">
+                                <p id="days" class="text-3xl text-green-600 font-extrabold"></p>
+                                <span class="text-sm text-gray-600">Μέρες</span>
+                            </div>
+                            <div class="bg-green-100 p-4 rounded-lg shadow-md">
+                                <p id="hours" class="text-3xl text-green-600 font-extrabold"></p>
+                                <span class="text-sm text-gray-600">Ώρες</span>
+                            </div>
+                            <div class="bg-green-100 p-4 rounded-lg shadow-md">
+                                <p id="minutes" class="text-3xl text-green-600 font-extrabold"></p>
+                                <span class="text-sm text-gray-600">Λεπτά</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Φάση Hackathon -->
-                <div class="bg-green-50 p-6 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Φάση του Hackathon</h3>
-                    <ul class="list-disc pl-6 text-gray-800 font-medium">
+                <!-- Hackathon Phases Section -->
+                <div class="w-full md:w-1/2 px-6 py-8 bg-gray-100 rounded-lg shadow-lg">
+                    <h3 class="text-3xl font-extrabold text-gray-800 text-center mb-6">Φάση του Hackathon</h3>
+                    <ul class="space-y-4 text-white font-medium text-center">
                         @foreach ($phases as $phase)
-                            <li class="
-                                @if ($currentPhase->id == $phase->id) 
-                                    text-green-600 text-xl font-bold 
-                                @elseif (\Carbon\Carbon::parse($phase->end_date)->isPast())
-                                    text-red-600 text-xl font-bold
-                                @else 
-                                    text-gray-800
-                                @endif
-                            ">
-                                {{ $phase->phase_name }}
-                                
+                        <li class="transition-all duration-300 ease-in-out transform
+                            @if ($currentPhase->id == $phase->id) 
+                                bg-green-700 text-white rounded-lg p-4 shadow-2xl scale-105 hover:bg-green-800 hover:scale-110
+                            @elseif (\Carbon\Carbon::parse($phase->end_date)->isPast())
+                                bg-red-600 text-white rounded-lg p-3 shadow-lg 
+                            @else 
+                                bg-gray-800 text-gray-300 rounded-lg p-3 shadow-md 
+                            @endif">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold">{{ $phase->phase_name }}</span>
                                 @if ($currentPhase->id == $phase->id)
-                                    <span class="text-green-600 ml-2">- Τρέχουσα Φάση</span>
+                                <span class="text-green-300 ml-2">- Τρέχουσα Φάση</span>
                                 @elseif (\Carbon\Carbon::parse($phase->end_date)->isPast())
-                                    <span class="text-red-600 ml-2">- Λήξη: {{ \Carbon\Carbon::parse($phase->end_date)->format('d-m-Y') }}</span>
+                                <span class="text-red-200 ml-2">- Λήξη: {{ \Carbon\Carbon::parse($phase->end_date)->format('d-m-Y') }}</span>
                                 @else
-                                    <span class="text-gray-600 ml-2"></span>
+                                <span class="text-gray-400 ml-2"></span>
                                 @endif
-                            </li>
+                            </div>
+                        </li>
                         @endforeach
                     </ul>
                 </div>
             </div>
+        </section>
 
             <!-- Όνομα Ομάδας -->
             <div class="bg-blue-600 p-4 mb-6 rounded-lg shadow-md text-center mx-auto">
