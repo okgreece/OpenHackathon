@@ -57,7 +57,7 @@
 
                 <!-- Hackathon Phases Section -->
                 <div class="w-full md:w-1/2 px-6 py-8 bg-gray-100 rounded-lg shadow-lg">
-                    <h3 class="text-3xl font-extrabold text-gray-800 text-center mb-6">Φάση του Hackathon</h3>
+                    <h3 class="text-3xl font-extrabold text-gray-800 text-center mb-6">Φάσεις του Διαγωνισμού</h3>
                     <ul class="space-y-4 text-white font-medium text-center">
                         @foreach ($phases as $phase)
                         <li class="transition-all duration-300 ease-in-out transform

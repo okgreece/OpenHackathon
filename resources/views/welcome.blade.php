@@ -139,15 +139,15 @@
                 <!-- OTS -->
                 <div class="p-4 bg-white rounded-lg shadow-md flex justify-center items-center">
                     <a href="https://www.ots.gr" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('/img/ots-logo.png') }}" alt="Sponsor 3"
+                        <img src="{{ asset('/img/ots-logo.svg') }}" alt="Sponsor 3"
                             class="w-40 hover:scale-105 transition duration-300 mx-auto">
                     </a>
                 </div>
 
                 <!-- Lancom -->
-                <div class="p-4 bg-gray-800 rounded-lg shadow-md flex justify-center items-center">
+                <div class="p-4 bg-white rounded-lg shadow-md flex justify-center items-center">
                     <a href="https://www.lancom.gr" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('/img/lancom-logo.png') }}" alt="Sponsor 4"
+                        <img src="{{ asset('/img/lancom-logo.svg') }}" alt="Sponsor 4"
                             class="w-40 hover:scale-105 transition duration-300 mx-auto">
                     </a>
                 </div>
@@ -167,7 +167,7 @@
                 <!-- Radio ERT3 Logo -->
                 <div class="bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition duration-300 flex justify-center items-center">
                     <a href="https://www.ert.gr/" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('/img/radioert3-logo.png') }}" alt="Radio ERT3" class="w-24 h-auto object-contain hover:scale-110 transition duration-300">
+                        <img src="{{ asset('/img/radioert3-logo.svg') }}" alt="Radio ERT3" class="w-24 h-auto object-contain hover:scale-110 transition duration-300">
                     </a>
                 </div>
 
@@ -188,14 +188,14 @@
             <div id="dropdown"
                 class="dropdown-content bg-white p-6 mt-4 rounded-lg shadow-lg transition-all duration-500 ease-in-out transform scale-95 opacity-0 hidden">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 place-items-center">
-                    <img src="{{ asset('/img/auth-logo.png') }}" alt="Υποστηρικτής 1" class="w-52">
-                    <img src="{{ asset('/img/pamak-logo.png') }}" alt="Υποστηρικτής 2" class="w-32">
+                    <img src="{{ asset('/img/auth-logo.svg') }}" alt="Υποστηρικτής 1" class="w-52">
+                    <img src="{{ asset('/img/pamak-logo.svg') }}" alt="Υποστηρικτής 2" class="w-32">
                     <img src="{{ asset('/img/okfngr-logo.svg') }}" alt="Sponsor 1" class="w-52">
                     <img src="{{ asset('/img/dimosThessalonikis.svg') }}" alt="Sponsor 3" class="w-52">
                     <img src="{{ asset('/img/elstat.svg') }}" alt="Sponsor 4" class="w-52">
-                    <img src="{{ asset('/img/ekbylogo.png') }}" alt="Υποστηρικτής 2" class="w-32">
-                    <img src="{{ asset('/img/limani-logo.png') }}" alt="Υποστηρικτής 2" class="w-32">
-                    <img src="{{ asset('/img/eyath-logo.png') }}" alt="Υποστηρικτής 2" class="w-32">
+                    <img src="{{ asset('/img/ekbylogo.svg') }}" alt="Υποστηρικτής 2" class="w-32">
+                    <img src="{{ asset('/img/limani-logo.svg') }}" alt="Υποστηρικτής 2" class="w-32">
+                    <img src="{{ asset('/img/eyath-logo.svg') }}" alt="Υποστηρικτής 2" class="w-32">
                 </div>
             </div>
         </div>
@@ -214,7 +214,7 @@
                 </p>
             </div>
             <p class="text-sm mt-2">
-                <a href="/terms-and-conditions" class="text-blue-200 underline hover:text-gray-100">Όροι και Προϋποθέσεις</a>
+                <a href="https://drive.google.com/drive/folders/1LZXnCMi5poVtbCgxjpmiDNLXtFF3vnXx?usp=sharing" target="_blank" class="text-blue-200 underline hover:text-gray-100">Όροι και Προϋποθέσεις</a>
             </p>
         </div>
     </footer>

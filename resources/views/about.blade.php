@@ -92,7 +92,7 @@
                 παρέχουν λύσεις σε κρίσιμα περιβαλλοντικά ζητήματα, όπως η κλιματική αλλαγή και η προστασία του φυσικού
                 περιβάλλοντος. Στόχος του διαγωνισμού είναι η ενίσχυση της συμμετοχής και η βελτίωση της καθημερινής
                 ζωής μέσω τεχνολογικών καινοτομιών με βιώσιμο περιβαλλοντικό αποτύπωμα.
-                Το OpenUp Thessaloniki Climate 2025 είναι ανοιχτό σε όλους. Είτε μένεις στην πόλη της Θεσσαλονίκης είτε
+                Το OpenUp Thessaloniki Climate 2025 είναι ανοικτό σε όλους. Είτε μένεις στην πόλη της Θεσσαλονίκης είτε
                 σε οποιοδήποτε άλλο μέρος της Ελλάδος, μπορείς να συμμετάσχεις και να συνεισφέρεις στη δημιουργία
                 εφαρμογών που προάγουν τη τη βιωσιμότητα και την περιβαλλοντική ευαισθητοποίηση.
             </p>
@@ -129,7 +129,7 @@
 
                 <!-- Hackathon Phases Section -->
                 <div class="w-full md:w-1/2 px-6 py-8 bg-gray-100 rounded-lg shadow-lg">
-                    <h3 class="text-3xl font-extrabold text-gray-800 text-center mb-6">Φάση του Hackathon</h3>
+                    <h3 class="text-3xl font-extrabold text-gray-800 text-center mb-6">Φάσεις του Διαγωνισμού</h3>
                     <ul class="space-y-4 text-white font-medium text-center">
                         @foreach ($phases as $phase)
                             <li class="transition-all duration-300 ease-in-out transform
@@ -208,15 +208,13 @@
                 περιβάλλοντος. Χρησιμοποιώντας αυτά τα δεδομένα, οι συμμετέχοντες μπορούν να δημιουργήσουν λύσεις
                 που βοηθούν στην αντιμετώπιση των περιβαλλοντικών προκλήσεων. Η εγγραφή στην πλατφόρμα είναι
                 υποχρεωτική καθώς επίσης και η χρήση <strong>τουλάχιστον ενός dataset</strong> για την υλοποίηση της
-                εφαρμογής. Το ODM παρέχει προηγμένα plugins, όπως Negotiation, Discovery και Environmental Plugin, που
+                εφαρμογής. Το ODM είναι σχεδιασμένο ώστε να παρέχει προηγμένα plugins, όπως Negotiation, Discovery και Environmental Plugin, που
                 αναπτύχθηκαν στο πλαίσιο του <a href="https://www.upcast-project.eu/" class="text-blue-600 hover:underline"
                     target="_blank"><strong>UPCAST Horizon Project</strong></a>. Αυτά τα
                 εργαλεία
                 διευκολύνουν τη διαπραγμάτευση, την ανακάλυψη και την απόκτηση δεδομένων με αποτελεσματικό τρόπο.
                 Επιπλέον, το ODM διαθέτει ένα σύγχρονο και φιλικό προς τον χρήστη UI, επιτρέποντας εύκολη πλοήγηση
                 και εξερεύνηση των δεδομένων, τα οποία είναι οργανωμένα σε κατηγορίες για καλύτερη πρόσβαση.
-                Υποστηρίζει επίσης προηγμένες λειτουργίες αναζήτησης, ενισχύοντας τη
-                διαλειτουργικότητα και τη χρήση δεδομένων.
             </p>
         </section>
 
@@ -228,9 +226,9 @@
             </div>
             <p class="text-gray-700 text-justify">
                 Ο διαγωνισμός <strong>OpenUp Climate Thessaloniki 2025</strong> δίνει τη
-                δυνατότητα σε οργανισμούς να προσφέρουν τα δικά τους δεδομένα ανοιχτά, τόσο κατά τη διάρκεια του
+                δυνατότητα σε οργανισμούς να προσφέρουν τα δικά τους δεδομένα ανοικτά, τόσο κατά τη διάρκεια του
                 διαγωνισμού όσο και μετά την ολοκλήρωσή του. Ένας οργανισμός που διαθέτει δεδομένα και θέλει να
-                συμβάλει, μπορεί να συμπληρώση την Google Φόρμα.
+                συμβάλει, μπορεί να συμπληρώσει την Google Φόρμα.
                 <a href="https://forms.gle/KhAKce2CeTqwCsiT6" class="text-gray-800 font-semibold hover:underline"
                     target="_blank">➡ Συμπλήρωσε τη φόρμα εδώ</a> Θα επικοινωνήσουμε το συντομότερο δυνατό για να
                 προστεθεί ο οργανισμός και τα δεδομένα στο ODM.
@@ -269,7 +267,7 @@
                 </p>
             </div>
             <p class="text-sm mt-2">
-                <a href="/terms-and-conditions" class="text-blue-200 underline hover:text-gray-100">Όροι και
+                <a href="https://drive.google.com/drive/folders/1LZXnCMi5poVtbCgxjpmiDNLXtFF3vnXx?usp=sharing" target="_blank" class="text-blue-200 underline hover:text-gray-100">Όροι και
                     Προϋποθέσεις</a>
             </p>
         </div>
