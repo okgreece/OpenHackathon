@@ -51,9 +51,8 @@ services:
     networks:
       - traefik-net
     healthcheck:
-    test: ["CMD", "mysqladmin", "ping", "--host=localhost", "--user=root", "--password=root"]      
-    interval: 10s
-    retries: 5
-
+        test: ["CMD", "mysqladmin", "ping", "--host=localhost", "--user=root", "--password=root"]
+        interval: 10s
+        retries: 5
 volumes:
   db_data:
