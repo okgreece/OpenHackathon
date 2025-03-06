@@ -32,7 +32,7 @@
     <!-- Header -->
     <header class="w-full bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 p-6 shadow-md">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="javascript:window.history.back();">
+            <a href="">
                 <h1 class="text-2xl font-bold text-white">OpenUP Hackathon</h1>
             </a>
             <nav class="space-x-4">

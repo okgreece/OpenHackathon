@@ -59,15 +59,14 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 });
 
 Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-
 Route::post('/admin/login', [AdminLoginController::class, 'login']);
 
 // Ομάδες και Αιτήσεις
 Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
     // Διαχείριση αιτήσεων ομάδων
-    Route::post('/team-requests/{id}/approve', [AdminPanelController::class, 'approveRequest'])->name('team-requests.approve');
-    Route::post('/team-requests/{id}/reject', [AdminPanelController::class, 'rejectRequest'])->name('team-requests.reject');
+    Route::post('/team-requests/{id}/approve', [AdminPanelController::class, 'approveRequest'])->name('admin.team-requests.approve');
+    Route::post('/team-requests/{id}/reject', [AdminPanelController::class, 'rejectRequest'])->name('admin.team-requests.reject');
 
     // Διαχείριση ομάδων
     Route::delete('/delete-team/{team}', [AdminPanelController::class, 'deleteTeam'])->name('delete.team');
