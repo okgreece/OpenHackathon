@@ -196,6 +196,8 @@
                     <img src="{{ asset('/img/ekbylogo.svg') }}" alt="Υποστηρικτής 2" class="w-32">
                     <img src="{{ asset('/img/limani-logo.svg') }}" alt="Υποστηρικτής 2" class="w-32">
                     <img src="{{ asset('/img/eyath-logo.svg') }}" alt="Υποστηρικτής 2" class="w-32">
+                    <img src="{{ asset('/img/anatoliki-logo.svg') }}" alt="Υποστηρικτής 2" class="w-32">
+                    <img src="{{ asset('/img/imet-logo.svg') }}" alt="Υποστηρικτής 2" class="w-24">
                 </div>
             </div>
         </div>
