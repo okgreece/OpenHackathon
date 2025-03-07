@@ -129,18 +129,18 @@
                 </div>
 
                 <!-- Deloitte -->
-                <div class="p-4 bg-white rounded-lg shadow-md flex justify-center items-center">
+                <!-- <div class="p-4 bg-white rounded-lg shadow-md flex justify-center items-center">
                     <a href="https://www2.deloitte.com/" target="_blank" rel="noopener noreferrer">
                         <img src="{{ asset('/img/Deloitte.svg') }}" alt="Sponsor 2"
                             class="w-40 hover:scale-105 transition duration-300 mx-auto">
                     </a>
-                </div>
+                </div> -->
 
                 <!-- OTS -->
                 <div class="p-4 bg-white rounded-lg shadow-md flex justify-center items-center">
                     <a href="https://www.ots.gr" target="_blank" rel="noopener noreferrer">
                         <img src="{{ asset('/img/ots-logo.svg') }}" alt="Sponsor 3"
-                            class="w-40 hover:scale-105 transition duration-300 mx-auto">
+                            class="w-32 hover:scale-105 transition duration-300 mx-auto">
                     </a>
                 </div>
 
