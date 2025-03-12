@@ -65,7 +65,9 @@
             <div class="bg-white p-6 rounded-lg shadow-lg text-center">
                 <h3 class="text-2xl font-bold text-gray-800 flex items-center justify-center space-x-2">
                     <i class="fas fa-trophy text-yellow-500 glitter"></i>
-                    <span>Διεκδίκησε μεγάλα χρηματικά έπαθλα <span class="font-semibold glitter"><p></p>3.000€, 2.000€ και 1.000€!</span></span>
+                    <span>Διεκδίκησε μεγάλα χρηματικά έπαθλα <span class="font-semibold glitter">
+                            <p></p>3.000€, 2.000€ και 1.000€!
+                        </span></span>
                 </h3>
                 <p class="text-gray-600 mt-4">
                     Διεκδικήστε με την ομάδα σας τις πρώτες θέσεις για να κερδίσετε χρηματικά έπαθλα:
@@ -80,59 +82,70 @@
             </div>
         </section>
 
-        <!-- Large "Διοργανωτές" Section -->
-        <section class="bg-white shadow-lg p-8 rounded-lg mt-16 w-3/4 mx-auto">
+        <section class="bg-white shadow-lg p-8 rounded-lg mt-16 w-11/12 md:w-3/4 mx-auto">
             <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-8">ΔΙΟΡΓΑΝΩΤΕΣ</h2>
-            <div class="flex flex-wrap justify-center gap-8">
-                <div class="p-4">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-items-center">
+                <!-- Open Knowledge Foundation -->
+                <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 flex justify-center items-center">
                     <a href="https://okfn.gr" target="_blank" rel="noopener noreferrer">
                         <img src="{{ asset('/img/okfngr-logo.svg') }}" alt="Open Knowledge Foundation"
-                            class="w-40 mx-auto transition-transform transform hover:scale-105 hover:shadow-lg rounded-lg">
+                            class="w-40 h-auto object-contain transition-transform transform hover:scale-105">
                     </a>
                 </div>
-                <div class="p-4">
+
+                <!-- ΕΛΣΤΑΤ -->
+                <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 flex justify-center items-center">
                     <a href="https://www.statistics.gr" target="_blank" rel="noopener noreferrer">
                         <img src="{{ asset('/img/elstat.svg') }}" alt="Ελληνική Στατιστική Αρχή"
-                            class="w-36 mx-auto transition-transform transform hover:scale-105 hover:shadow-lg rounded-lg">
+                            class="w-36 h-auto object-contain transition-transform transform hover:scale-105">
                     </a>
                 </div>
-                <div class="p-4">
+
+                <!-- Δήμος Θεσσαλονίκης -->
+                <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 flex justify-center items-center">
                     <a href="https://thessaloniki.gr" target="_blank" rel="noopener noreferrer">
                         <img src="{{ asset('/img/dimosThessalonikis.svg') }}" alt="Δήμος Θεσσαλονίκης"
-                            class="w-36 mx-auto transition-transform transform hover:scale-105 hover:shadow-lg rounded-lg">
+                            class="w-36 h-auto object-contain transition-transform transform hover:scale-105">
                     </a>
                 </div>
-                <div class="p-4">
+
+                <!-- International Hellenic University -->
+                <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 flex justify-center items-center">
                     <a href="https://www.ihu.gr" target="_blank" rel="noopener noreferrer">
                         <img src="{{ asset('/img/ihu-logo.svg') }}" alt="International Hellenic University"
-                            class="w-36 mx-auto transition-transform transform hover:scale-105 hover:shadow-lg rounded-lg">
+                            class="w-36 h-auto object-contain transition-transform transform hover:scale-105">
                     </a>
                 </div>
-                <div class="p-4">
+
+                <!-- MDAT -->
+                <div class="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 flex justify-center items-center">
                     <a href="https://mdat.gr/" target="_blank" rel="noopener noreferrer">
                         <img src="{{ asset('/img/mdat-logo.svg') }}" alt="MDAT"
-                            class="w-32 mx-auto transition-transform transform hover:scale-105 hover:shadow-lg rounded-lg">
+                            class="w-32 h-auto object-contain transition-transform transform hover:scale-105">
                     </a>
                 </div>
             </div>
         </section>
 
-        <section class="bg-white shadow-lg p-8 rounded-lg mt-16 w-3/4 mx-auto">
+
+        <section class="bg-white shadow-lg p-8 rounded-lg mt-16 w-11/12 md:w-3/4 mx-auto">
             <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-8">ΧΟΡΗΓΟΙ</h2>
-            <div class="flex justify-center items-center gap-8">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
                 <!-- Open Knowledge Foundation -->
                 <div class="p-4 bg-white rounded-lg shadow-md flex justify-center items-center">
                     <a href="https://okfn.gr" target="_blank" rel="noopener noreferrer">
                         <img src="{{ asset('/img/okfngr-logo.svg') }}" alt="Sponsor 1"
-                            class="w-52 hover:scale-105 transition duration-300 mx-auto">
+                            class="w-52 hover:scale-105 transition duration-300">
                     </a>
                 </div>
 
                 <!-- Deloitte -->
-                <div class="p-6 bg-white rounded-lg shadow-md flex justify-center items-center">
+                <div class="p-4 bg-white rounded-lg shadow-md flex justify-center items-center">
                     <a href="https://www2.deloitte.com/" target="_blank" rel="noopener noreferrer">
                         <img src="{{ asset('/img/Deloitte.svg') }}" alt="Sponsor 2"
-                            class="w-48 hover:scale-105 transition duration-300 mx-auto">
+                            class="w-48 hover:scale-105 transition duration-300">
                     </a>
                 </div>
 
@@ -140,23 +153,25 @@
                 <div class="p-4 bg-white rounded-lg shadow-md flex justify-center items-center">
                     <a href="https://www.ots.gr" target="_blank" rel="noopener noreferrer">
                         <img src="{{ asset('/img/ots-logo.svg') }}" alt="Sponsor 3"
-                            class="w-32 hover:scale-105 transition duration-300 mx-auto">
+                            class="w-32 hover:scale-105 transition duration-300">
                     </a>
                 </div>
 
                 <!-- Lancom -->
-                <div class="p-6 bg-white rounded-lg shadow-md flex justify-center items-center">
+                <div class="p-4 bg-white rounded-lg shadow-md flex justify-center items-center">
                     <a href="https://www.lancom.gr" target="_blank" rel="noopener noreferrer">
                         <img src="{{ asset('/img/lancom-logo.svg') }}" alt="Sponsor 4"
-                            class="w-48 hover:scale-105 transition duration-300 mx-auto">
+                            class="w-48 hover:scale-105 transition duration-300">
                     </a>
                 </div>
             </div>
         </section>
 
-        <section class="bg-white shadow-lg p-8 rounded-lg mt-16 w-3/4 mx-auto">
+
+        <section class="bg-white shadow-lg p-8 rounded-lg mt-16 w-11/12 md:w-3/4 mx-auto">
             <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-8">ΧΟΡΗΓΟΙ ΕΠΙΚΟΙΝΩΝΙΑΣ</h2>
-            <div class="flex flex-wrap justify-center items-center gap-6 mt-6">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
                 <!-- ERT Logo -->
                 <div class="bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition duration-300 flex justify-center items-center">
                     <a href="https://www.ert.gr/" target="_blank" rel="noopener noreferrer">
@@ -179,6 +194,7 @@
                 </div>
             </div>
         </section>
+
 
         <div class="text-center mt-8">
             <button id="toggleButton"
