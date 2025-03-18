@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -23,6 +24,11 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/about', [AboutController::class, 'index']);
 Route::get('/about', [AboutController::class, 'aboutShowPanel'])->name('about');
 
+Route::get('/reset-password', function () {
+    return view('auth.reset-password');
+})->name('reset.password.form');
+
+Route::post('/reset-password', [ResetPasswordController::class, 'update'])->name('reset.password');
 
 Route::middleware(['auth'])->group(function () {
 
