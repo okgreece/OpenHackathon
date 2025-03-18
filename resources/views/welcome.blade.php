@@ -232,9 +232,21 @@
                     This project has received funding from the European Union´s Horizon Research and Innovation Actions under Grant Agreement nº 101093216.
                 </p>
             </div>
-            <p class="text-sm mt-2">
-                <a href="https://drive.google.com/drive/folders/1LZXnCMi5poVtbCgxjpmiDNLXtFF3vnXx?usp=sharing" target="_blank" class="text-blue-200 underline hover:text-gray-100">Όροι και Προϋποθέσεις</a>
-            </p>
+            <div class="flex justify-center items-center space-x-4 mt-4">
+
+                <a href="https://drive.google.com/drive/folders/1LZXnCMi5poVtbCgxjpmiDNLXtFF3vnXx?usp=sharing"
+                    target="_blank"
+                    class="text-blue-200 underline hover:text-gray-100 text-sm">
+                    Όροι και Προϋποθέσεις
+                </a>
+                <span class="text-white text-sm">|</span>
+
+                <!-- Support Email -->
+                <a href="mailto:grkazz@okfn.gr"
+                    class="text-blue-200 underline hover:text-gray-100 text-sm">
+                    Υποστήριξη: grkazz@okfn.gr
+                </a>
+            </div>
         </div>
     </footer>
 

@@ -40,8 +40,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/teams/join/{team}', [TeamController::class, 'join'])->name('teams.join');
     Route::get('/teams/{team}/panel', [TeamController::class, 'showPanel'])->name('teams.panel');
     Route::post('/team/{id}/complete-phase', [TeamController::class, 'completePhase'])->name('team.completePhase');
-
-
+    
+    Route::post('/teams/{team}/invite', [TeamController::class, 'send'])->name('invitations.send');
+    Route::post('/invitations/{invitation}/cancel', [TeamController::class, 'cancel'])->name('invitations.cancel');
+    Route::post('/invitations/{invitation}/reject', [TeamController::class, 'reject'])->name('invitations.reject');
 });
 
 //ADMIN

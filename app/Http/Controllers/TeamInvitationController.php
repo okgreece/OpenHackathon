@@ -11,46 +11,64 @@ use Illuminate\Support\Facades\Auth;
 
 class TeamInvitationController extends Controller
 {
-    // Στέλνει πρόσκληση στον ηγέτη της επιλεγμένης ομάδας
-    public function sendInvitation($teamId)
+    // Στέλνει πρόσκληση στον leader της επιλεγμένης ομάδας
+    public function sendInvitation(Request $request, Team $team)
     {
-        $team = Team::findOrFail($teamId);
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+        ]);
+        
+        $user = User::findOrFail($request->user_id);
 
-        // Ελέγχουμε αν ο χρήστης ανήκει ήδη σε κάποια ομάδα
-        if (Auth::user()->team_id !== null) {
-            return redirect()->back()->with('error', 'Δεν μπορείτε να στείλετε πρόσκληση γιατί ήδη ανήκετε σε ομάδα');
+        // Έλεγχος: είναι ήδη σε ομάδα;
+        if (!is_null($user->team_id)) {
+            return back()->with('error', 'Ο χρήστης ανήκει ήδη σε ομάδα.');
         }
 
-        // Στέλνουμε την πρόσκληση στον ηγέτη της ομάδας
-        $invitation = TeamInvitation::create([
+        // Έλεγχος: υπάρχει ήδη pending πρόσκληση;
+        $existingInvitation = TeamInvitation::where('team_id', $team->id)
+            ->where('user_id', $user->id)
+            ->where('status', 'pending')
+            ->first();
+
+        if ($existingInvitation) {
+            return back()->with('error', 'Ο χρήστης έχει ήδη πρόσκληση από την ομάδα.');
+        }
+
+        // Δημιουργία πρόσκλησης
+        TeamInvitation::create([
             'team_id' => $team->id,
-            'user_id' => Auth::id(),
-            'leader_id' => $team->user_id,
+            'user_id' => $user->id,
+            'leader_id' => auth()->user()->id,
             'status' => 'pending',
         ]);
 
-        return redirect()->back()->with('success', 'Η πρόσκληση αποστάλθηκε στον ηγέτη της ομάδας');
+        return back()->with('success', 'Η πρόσκληση στάλθηκε με επιτυχία!');
     }
 
     public function acceptInvitation($invitationId)
     {
         $invitation = TeamInvitation::findOrFail($invitationId);
+        logger("o user dexetai tin prosklisi kai mpainei stin omada");
+        if ($invitation->user_id !== Auth::id()) {
+            return redirect()->back()->with('error', 'Δεν έχεις δικαίωμα να αποδεχτείς αυτή την πρόσκληση.');
+        }
 
-        if ($invitation->leader_id !== Auth::id()) {
-            return redirect()->back()->with('error', 'Μόνο ο leader μπορεί να αποδεχτεί την πρόσκληση');
+        if ($invitation->status !== 'pending') {
+            return redirect()->back()->with('error', 'Αυτή η πρόσκληση δεν είναι πλέον ενεργή.');
         }
 
         $invitation->status = 'accepted';
         $invitation->save();
 
-        $team = $invitation->team;
-        $team->members()->attach($invitation->user_id, ['role' => 'member']);
-
         $user = $invitation->user;
-        $user->team_id = $team->id;
+        $user->team_id = $invitation->team_id;
         $user->save();
 
-        return redirect()->route('dashboard')->with('success', 'Η πρόσκληση αποδεχτήκε και ο χρήστης προστέθηκε στην ομάδα');
+        $team = $invitation->team;
+        $team->members()->attach($user->id, ['role' => 'member']);
+
+        return redirect()->route('dashboard')->with('success', 'Αποδέχθηκες την πρόσκληση και μπήκες στην ομάδα!');
     }
 
     public function rejectInvitation($invitationId)
