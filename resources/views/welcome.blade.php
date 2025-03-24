@@ -196,6 +196,19 @@
         </section>
 
 
+        <!-- Υπό την Αιγίδα -->
+        <section class="bg-white shadow-lg p-8 rounded-lg mt-16 w-11/12 md:w-3/4 mx-auto">
+            <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-8">ΥΠΟ ΤΗΝ ΑΙΓΙΔΑ</h2>
+
+            <div class="flex justify-center items-center">
+                <a href="https://www.pkm.gov.gr/" target="_blank" rel="noopener noreferrer" class="block">
+                    <img src="{{ asset('/img/periferia-makedonias.svg') }}" 
+                        alt="Περιφέρεια Κεντρικής Μακεδονίας" 
+                        class="w-72 h-auto object-contain hover:scale-110 transition duration-300">
+                </a>
+            </div>
+        </section>
+
         <div class="text-center mt-8">
             <button id="toggleButton"
                 class="bg-green-800 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition duration-300 ease-in-out shadow-md">
