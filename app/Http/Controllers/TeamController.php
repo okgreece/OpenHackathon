@@ -96,23 +96,31 @@ class TeamController extends Controller
 
     public function send(Request $request, Team $team)
     {
-        // Έλεγχος αν είναι Leader
         if ($team->user_id != auth()->user()->id) {
             abort(403);
         }
-        logger("o admin stelnei prosklisi");
-        // Εύρεση χρήστη
-        $user = User::findOrFail($request->user_id);
 
-        // Έλεγχος αν είναι ήδη μέλος ή έχει πρόσκληση
-        if ($team->members->contains($user->id) || $team->invitations()->where('user_id', $user->id)->exists()) {
-            return redirect()->back()->with('error', 'Ο χρήστης είναι ήδη μέλος ή έχει πρόσκληση.');
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'Ο χρήστης δεν βρέθηκε.');
         }
 
-        // Δημιουργία πρόσκλησης
+        if ($user->team_id) {  
+            return redirect()->back()->with('error', 'Ο χρήστης είναι ήδη μέλος άλλης ομάδας.');
+        }
+
+        if ($team->members->contains($user->id) || $team->invitations()->where('user_id', $user->id)->exists()) {
+            return redirect()->back()->with('error', 'Ο χρήστης είναι ήδη μέλος ή έχει ήδη πρόσκληση.');
+        }
+
         $team->invitations()->create([
             'user_id' => $user->id,
-            'leader_id' => auth()->user()->id,  // Εδώ προσθέτουμε το leader_id
+            'leader_id' => auth()->user()->id,
             'status' => 'pending'
         ]);
 
