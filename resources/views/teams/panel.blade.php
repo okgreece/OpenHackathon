@@ -107,54 +107,49 @@
                 <h3 class="text-3xl font-semibold text-gray-800">Διαχείριση Ομάδας</h3>
 
                 @if ($team->user_id == Auth::user()->id)
-                            <!-- Έλεγχος αν η ομάδα έχει φτάσει το όριο των 4 μελών -->
-                            @if ($team->members->count() >= 4)
-                                <div class="mt-8 p-4 bg-yellow-100 text-yellow-800 rounded-lg shadow">
-                                    <h4 class="text-xl font-semibold">Η ομάδα σου είναι πλήρης!</h4>
-                                    <p>Δεν μπορείς να προσκαλέσεις άλλα μέλη, καθώς έχεις φτάσει το μέγιστο όριο των 4 μελών.</p>
-                                </div>
-                            @else
-                                <!-- Φόρμα αποστολής πρόσκλησης -->
-                                <div class="mt-8">
-                                    <h4 class="text-2xl font-semibold text-gray-800">Πρόσκληση μελών στην ομάδα</h4>
+                    <!-- Έλεγχος αν η ομάδα έχει φτάσει το όριο των 4 μελών -->
+                    @if ($team->members->count() >= 4)
+                        <div class="mt-8 p-4 bg-yellow-100 text-yellow-800 rounded-lg shadow">
+                            <h4 class="text-xl font-semibold">Η ομάδα σου είναι πλήρης!</h4>
+                            <p>Δεν μπορείς να προσκαλέσεις άλλα μέλη, καθώς έχεις φτάσει το μέγιστο όριο των 4 μελών.</p>
+                        </div>
+                    @else
+                        @if (session('success'))
+                            <div class="mt-4 p-4 bg-green-100 text-green-800 rounded-lg shadow">
+                                {{ session('success') }}
+                            </div>
+                        @endif
 
-                                    <form action="{{ route('invitations.send', $team->id) }}" method="POST"
-                                        class="mt-4 flex flex-col space-y-4">
-                                        @csrf
+                        @if (session('error'))
+                            <div class="mt-4 p-4 bg-red-100 text-red-800 rounded-lg shadow">
+                                {{ session('error') }}
+                            </div>
+                        @endif
 
-                                        <label for="user_id" class="text-lg text-gray-700">Επέλεξε χρήστη:</label>
-                                        <select name="user_id" id="user_id" class="border border-gray-300 rounded-lg p-2 text-gray-800" required>
-                                            @php
-                                                $availableUsers = $users->filter(function ($user) use ($team) {
-                                                    $hasPendingInvitation = $team->invitations()
-                                                    ->where('user_id', $user->id)
-                                                    ->where('status', 'rejected')
-                                                    ->delete();
+                        <div class="mt-8">
+                            <h4 class="text-2xl font-semibold text-gray-800">Πρόσκληση μελών στην ομάδα</h4>
 
-                                                    return !$team->members->contains('id', $user->id) && !$hasPendingInvitation;
-                                                });
-                                            @endphp
+                            <form action="{{ route('invitations.send', $team->id) }}" method="POST" class="mt-4 flex flex-col space-y-4">
+                                @csrf
 
-                                            @forelse ($availableUsers as $user)
-                                                <option value="{{ $user->id }}">
-                                                    {{ $user->name }} ({{ $user->email }})
-                                                </option>
-                                            @empty
-                                                <option disabled selected>Δεν υπάρχουν διαθέσιμοι χρήστες για πρόσκληση.</option>
-                                            @endforelse
-                                        </select>
+                                <label for="email" class="text-lg text-gray-700">Καταχώρησε το email του χρήστη που θέλεις να προσκαλέσεις:</label>
+                                <input 
+                                    type="email" 
+                                    name="email" 
+                                    id="email" 
+                                    class="border border-gray-300 rounded-lg p-2 text-gray-800" 
+                                    placeholder="example@email.com" 
+                                    required
+                                >
 
-                                        @if ($availableUsers->count() > 0)
-                                            <button type="submit"
-                                                class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
-                                                Αποστολή Πρόσκλησης
-                                            </button>
-                                        @endif
-                                    </form>
-                                </div>
-                            @endif
-
-
+                                <button type="submit"
+                                    class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
+                                    Αποστολή Πρόσκλησης
+                                </button>
+                            </form>
+                        </div>
+                    @endif
+                
                             <!-- Προβολή προσκλήσεων που έχει στείλει ο Leader -->
                             @if ($team->members->count() < 4)
                                 <div class="mt-10">
