@@ -233,7 +233,88 @@
                 </form>
             </div>
 
+            <!-- Mentor Panel -->
+            <div class="container mx-auto p-6">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">Διαχείριση Μεντόρων</h2>
 
+                @if(session('success'))
+                    <div class="bg-green-100 text-green-700 p-3 rounded-lg mb-4">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <form action="{{ route('admin.mentors.store') }}" method="POST">
+                    @csrf
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700">Όνομα</label>
+                            <input type="text" name="first_name" required class="w-full p-2 border rounded-lg text-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700">Επώνυμο</label>
+                            <input type="text" name="last_name" required class="w-full p-2 border rounded-lg text-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700">Email</label>
+                            <input type="email" name="email" required class="w-full p-2 border rounded-lg text-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700">Βιογραφικό</label>
+                            <textarea name="bio" class="w-full p-2 border rounded-lg text-gray-700"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700">Κωδικός</label>
+                            <input type="password" name="password" required class="w-full p-2 border rounded-lg text-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700">Επιβεβαίωση Κωδικού</label>
+                            <input type="password" name="password_confirmation" required class="w-full p-2 border rounded-lg text-gray-700">
+                        </div>
+                    </div>
+                    <button type="submit" class="mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
+                        Προσθήκη Μέντορα
+                    </button>
+                </form>
+
+                <!-- lista mentor -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">Λίστα Μεντόρων</h3>
+                    <table class="w-full border-collapse border border-gray-200">
+                        <thead>
+                            <tr class="bg-gray-700">
+                                <th class="border p-3 text-gray-100">Όνομα</th>
+                                <th class="border p-3 text-gray-100">Email</th>
+                                <th class="border p-3 text-gray-100">Βιογραφικό</th>
+                                <th class="border p-3 text-gray-100">Ανανέωση Κωδικού</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($mentors as $mentor)
+                            <tr class="text-center">
+                                <td class="border p-3 text-gray-800">{{ $mentor->first_name }} {{ $mentor->last_name }}</td>
+                                <td class="border p-3 text-gray-800">{{ $mentor->email }}</td>
+                                <td class="border p-3 text-gray-800">
+                                    <div class="max-h-24 overflow-y-auto p-2">
+                                        {{ $mentor->bio }}
+                                    </div>
+                                </td>                                
+                                <td class="border p-3 text-gray-800">
+                                    <form action="{{ route('admin.mentor.updatePassword', $mentor->id) }}" method="POST">
+                                        @csrf
+                                        <div class="flex flex-col">
+                                            <input type="password" name="new_password" placeholder="Νέος Κωδικός" class="p-2 rounded border border-gray-300 mb-2" required>
+                                            <input type="password" name="new_password_confirmation" placeholder="Επιβεβαίωση Κωδικού" class="p-2 rounded border border-gray-300 mb-2" required>
+
+                                            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Ανανέωση Κωδικού</button>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
             <!-- Enimerosi toy registration -->
             @php

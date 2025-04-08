@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mentor;
 use App\Models\Team;
 use App\Models\TeamInvitation;
 use App\Models\User;
@@ -50,6 +51,8 @@ class TeamController extends Controller
 
     public function showPanel(Team $team)
     {
+        $mentors = Mentor::whereNull('team_id')->get();
+
         if (auth()->user()->team_id != $team->id) {
             return redirect()->route('dashboard')->with('error', 'Δεν έχεις πρόσβαση σε αυτήν την ομάδα.');
         }
@@ -65,7 +68,7 @@ class TeamController extends Controller
         // Όλους τους χρήστες που δεν έχουν ομάδα (για να στείλεις πρόσκληση)
         $users = User::whereNull('team_id')->get();
 
-        return view('teams.panel', compact('team', 'currentPhase', 'phases', 'members', 'sentInvitations', 'users'));
+        return view('teams.panel', compact('team', 'currentPhase', 'phases', 'members', 'sentInvitations', 'users','mentors'));
     }
 
 
@@ -96,23 +99,31 @@ class TeamController extends Controller
 
     public function send(Request $request, Team $team)
     {
-        // Έλεγχος αν είναι Leader
         if ($team->user_id != auth()->user()->id) {
             abort(403);
         }
-        logger("o admin stelnei prosklisi");
-        // Εύρεση χρήστη
-        $user = User::findOrFail($request->user_id);
 
-        // Έλεγχος αν είναι ήδη μέλος ή έχει πρόσκληση
-        if ($team->members->contains($user->id) || $team->invitations()->where('user_id', $user->id)->exists()) {
-            return redirect()->back()->with('error', 'Ο χρήστης είναι ήδη μέλος ή έχει πρόσκληση.');
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'Ο χρήστης δεν βρέθηκε.');
         }
 
-        // Δημιουργία πρόσκλησης
+        if ($user->team_id) {  
+            return redirect()->back()->with('error', 'Ο χρήστης είναι ήδη μέλος άλλης ομάδας.');
+        }
+
+        if ($team->members->contains($user->id) || $team->invitations()->where('user_id', $user->id)->exists()) {
+            return redirect()->back()->with('error', 'Ο χρήστης είναι ήδη μέλος ή έχει ήδη πρόσκληση.');
+        }
+
         $team->invitations()->create([
             'user_id' => $user->id,
-            'leader_id' => auth()->user()->id,  // Εδώ προσθέτουμε το leader_id
+            'leader_id' => auth()->user()->id,
             'status' => 'pending'
         ]);
 
@@ -123,6 +134,7 @@ class TeamController extends Controller
     {
         $team = $invitation->team;
         logger("o admin akironei tin prosklisi");
+        
         // Έλεγχος αν είναι Leader
         if ($team->user_id != auth()->user()->id) {
             abort(403);
@@ -137,15 +149,39 @@ class TeamController extends Controller
     {
         $invitation = TeamInvitation::findOrFail($invitationId);
         logger("o user akironei to inv");
-        // Ελέγξτε αν ο χρήστης είναι αυτός που έχει προσκληθεί
+
         if ($invitation->user_id !== auth()->id()) {
             return redirect()->route('dashboard')->with('error', 'Δεν μπορείς να απορρίψεις αυτήν την πρόσκληση.');
         }
 
-        // Ενημέρωση της πρόσκλησης σε κατάσταση 'rejected'
         $invitation->status = 'rejected';
         $invitation->save();
 
         return redirect()->route('dashboard')->with('success', 'Η πρόσκληση απορρίφθηκε.');
+    }
+
+    public function selectMentor(Request $request)
+    {
+        $request->validate([
+            'mentor_id' => 'required|exists:mentors,id',
+        ]);
+
+        $user = auth()->user();
+        $team = $user->team;
+
+        if (!$team) {
+            logger("den exei omada");
+            return back()->with('error', 'Δεν έχετε ομάδα.');
+        }
+
+        if ($team->mentor_id && $team->mentor_status === 'approved') {
+            return back()->with('error', 'Έχετε ήδη επιλέξει μέντορα.');
+        }
+
+        $team->mentor_id = $request->mentor_id;
+        $team->mentor_status = 'pending';
+        $team->save();
+
+        return back()->with('success', 'Η επιλογή σας καταχωρήθηκε! Περιμένετε έγκριση από τον μέντορα.');
     }
 }

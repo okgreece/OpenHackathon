@@ -33,7 +33,7 @@ class Team extends Model
     public function members()
     {
         return $this->belongsToMany(User::class, 'team_members')
-                    ->withPivot('role') // Χρησιμοποιούμε το pivot για να πάρουμε το role
+                    ->withPivot('role')
                     ->withTimestamps();
     }
 
@@ -45,5 +45,10 @@ class Team extends Model
      public function invitations()
     {
         return $this->hasMany(TeamInvitation::class);
+    }
+
+    public function mentor()
+    {
+        return $this->belongsTo(Mentor::class);
     }
 }

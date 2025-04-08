@@ -37,7 +37,7 @@
             </a>
             <nav class="space-x-4">
                 <a href="./about" class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">Σχετικά</a>
-                <a href="https://tds.okfn.gr/" target="_blank" class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition">Open Data Marketplace</a>
+                <a href="https://tds.okfn.gr/" target="_blank" class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition">Open Data Space</a>
                 <a href="./login" class="bg-teal-800 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Είσοδος</a>
             </nav>
         </div>

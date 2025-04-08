@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MentorController;
 use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
@@ -18,11 +19,24 @@ Route::get('/', function () {
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
+Route::get('/mentors/register', [MentorController::class, 'showRegisterForm'])->name('mentors.register.form');
+Route::post('/mentors/register', [MentorController::class, 'register'])->name('mentors.register');
+
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/mentors/login', [MentorController::class, 'showLoginForm'])->name('mentors.login');
+Route::post('/mentors/login', [MentorController::class, 'login']);
+
 Route::get('/about', [AboutController::class, 'index']);
 Route::get('/about', [AboutController::class, 'aboutShowPanel'])->name('about');
+
+Route::middleware(['auth:mentor'])->group(function () {
+    Route::get('/mentors/dashboard', [MentorController::class, 'dashboard'])->name('mentors.dashboard');
+    Route::post('/mentor/accept/{team}', [MentorController::class, 'accept'])->name('mentor.accept');
+    Route::post('/mentor/decline/{team}', [MentorController::class, 'decline'])->name('mentor.decline');
+    Route::post('/mentors/logout', [MentorController::class, 'logout'])->name('mentors.logout');
+});
 
 Route::get('/reset-password', function () {
     return view('auth.reset-password');
@@ -50,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/teams/{team}/invite', [TeamController::class, 'send'])->name('invitations.send');
     Route::post('/invitations/{invitation}/cancel', [TeamController::class, 'cancel'])->name('invitations.cancel');
     Route::post('/invitations/{invitation}/reject', [TeamController::class, 'reject'])->name('invitations.reject');
+    Route::post('/team/select-mentor', [TeamController::class, 'selectMentor'])->name('team.selectMentor');
 });
 
 //ADMIN
@@ -61,9 +76,11 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::delete('/admin/delete-member/{member}', [AdminPanelController::class, 'deleteMember'])->name('admin.delete.member');
     Route::post('/admin/update-end-date/{id}', [AdminPanelController::class, 'updateEndDate'])->name('admin.updateEndDate');
     Route::post('/admin/toggle-registration', [AdminPanelController::class, 'toggleRegistration'])->name('admin.toggleRegistration');
-
     Route::post('/admin/assign-user-to-team', [AdminPanelController::class, 'assignUserToTeam'])->name('admin.assignUserToTeam');
 
+    Route::get('/admin/mentors', [AdminPanelController::class, 'index'])->name('admin.mentors');
+    Route::post('/admin/mentors', [AdminPanelController::class, 'store'])->name('admin.mentors.store');
+    Route::post('/admin/update-password/{mentor}', [AdminPanelController::class, 'updatePassword'])->name('admin.mentor.updatePassword');
 });
 
 Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');

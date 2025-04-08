@@ -44,6 +44,10 @@ return [
         'driver' => 'session',
         'provider' => 'admin_users',
         ],
+        'mentor' => [
+        'driver' => 'session',
+        'provider' => 'mentors',
+        ],
     ],
 
     /*
@@ -72,6 +76,11 @@ return [
         'admin_users' => [
         'driver' => 'eloquent',
         'model' => App\Models\AdminUser::class,
+        ],
+
+        'mentors' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Mentor::class, // <-- Βεβαιώσου ότι το Model υπάρχει!
         ],
     ],
 
