@@ -279,7 +279,6 @@
                             </form>
                         </div>
                     @endif
-<<<<<<< HEAD
 
                     <!-- Προβολή προσκλήσεων που έχει στείλει ο Leader -->
                     @if ($team->members->count() < 4)
@@ -306,48 +305,6 @@
                                                         <span class="text-green-600 font-semibold">Αποδεκτή</span>
                                                     @elseif($invitation->status === 'rejected')
                                                         <span class="text-red-600 font-semibold">Απορρίφθηκε</span>
-=======
-                
-                            <!-- Προβολή προσκλήσεων που έχει στείλει ο Leader -->
-                            @if ($team->members->count() < 4)
-                                <div class="mt-10">
-                                    <h4 class="text-2xl font-semibold text-gray-800 mb-4">Εκκρεμείς προσκλήσεις</h4>
-
-                                    @php
-                                        $leaderInvitations = $team->invitations->where('leader_id', Auth::id());
-                                    @endphp
-
-                                    @if($leaderInvitations->isEmpty())
-                                        <p class="text-gray-500">Δεν έχουν σταλεί ακόμα προσκλήσεις.</p>
-                                    @else
-                                        <ul class="space-y-4">
-                                            @foreach ($leaderInvitations as $invitation)
-                                                <li
-                                                    class="flex justify-between items-center p-6 bg-gray-50 rounded-lg shadow-lg hover:bg-gray-100 transition duration-300">
-                                                    <div>
-                                                        <span class="font-semibold text-lg text-gray-700">{{ $invitation->user->name }}</span>
-                                                        <p class="text-sm text-gray-500">
-                                                            Κατάσταση:
-                                                            @if($invitation->status === 'pending')
-                                                                <span class="text-yellow-600 font-semibold">Σε αναμονή</span>
-                                                            @elseif($invitation->status === 'accepted')
-                                                                <span class="text-green-600 font-semibold">Αποδεκτή</span>
-                                                            @elseif($invitation->status === 'rejected')
-                                                                <span class="text-red-600 font-semibold">Απορρίφθηκε</span>
-                                                            @endif
-                                                        </p>
-                                                    </div>
-
-                                                    @if ($invitation->status === 'pending')
-                                                        <form action="{{ route('invitations.cancel', $invitation->id) }}" method="POST"
-                                                            onsubmit="return confirm('Είσαι σίγουρος ότι θέλεις να ακυρώσεις την πρόσκληση;');">
-                                                            @csrf
-                                                            <button type="submit"
-                                                                class="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out">
-                                                                Ακύρωση
-                                                            </button>
-                                                        </form>
->>>>>>> ae5f3f40b127ef97c18285d109fdca7a677da456
                                                     @endif
                                                 </p>
                                             </div>
@@ -555,7 +512,6 @@
                 }
             </script>
 
-<<<<<<< HEAD
 
         <!-- Modal Mentor -->
         <div id="mentorModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
@@ -612,6 +568,3 @@
             }
         </style>
 </html>
-=======
-</html>
->>>>>>> ae5f3f40b127ef97c18285d109fdca7a677da456
