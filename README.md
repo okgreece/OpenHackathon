@@ -14,9 +14,9 @@ This application is built using the following technologies:
 - **JavaScript** for interactive elements
 
 ## Screenshots
-![image](https://github.com/user-attachments/assets/b3a824fd-2457-4d21-9c1b-0785fc571313)
-![image](https://github.com/user-attachments/assets/f8cd0250-2d66-4070-ba3c-b277a1cdb6aa)
-![image](https://github.com/user-attachments/assets/9c827f5f-309d-4b0b-a80f-15623feb6060)
+![image](https://github.com/user-attachments/assets/c9f1f462-3b51-4896-b00e-6fcccc749239)
+![image](https://github.com/user-attachments/assets/cecaa460-3d87-4090-b72e-7d61d8c7cbd6)
+![image](https://github.com/user-attachments/assets/56a4d27e-2352-4cf0-a845-fce9fef1d89e)
 
 
 ## Installation
