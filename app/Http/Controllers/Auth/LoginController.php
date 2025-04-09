@@ -29,7 +29,6 @@ class LoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        // Επικύρωση των δεδομένων εισόδου
         $validator = Validator::make($credentials, [
             'email' => 'required|email',
             'password' => 'required|string|min:8',
@@ -39,10 +38,9 @@ class LoginController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // Προσπάθεια σύνδεσης με τα δεδομένα χρήστη
         if (Auth::attempt($credentials)) {
-            // Σύνδεση επιτυχής
-            return redirect()->intended(route('dashboard'));  // Μεταφορά στο dashboard ή την αρχική σελίδα
+
+            return redirect()->intended(route('dashboard'));
         }
 
         // Αποτυχία σύνδεσης
@@ -57,6 +55,6 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/');
+        return redirect()->route('login')->with('success', 'Αποσυνδέθηκες επιτυχώς!');
     }
 }
