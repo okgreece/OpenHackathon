@@ -515,7 +515,7 @@
 
         <!-- Modal Mentor -->
         <div id="mentorModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl mx-4 md:mx-0 animate-fadeIn">
+            <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl mx-4 md:mx-0 max-h-screen overflow-y-auto animate-fadeIn">
                 
                 <!-- Close Button -->
                 <button onclick="closeMentorModal()" 
