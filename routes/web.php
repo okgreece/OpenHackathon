@@ -31,6 +31,9 @@ Route::post('/mentors/login', [MentorController::class, 'login']);
 Route::get('/about', [AboutController::class, 'index']);
 Route::get('/about', [AboutController::class, 'aboutShowPanel'])->name('about');
 
+Route::get('/about-mentors', [MentorController::class, 'aboutMentor']);
+
+
 Route::middleware(['auth:mentor'])->group(function () {
     Route::get('/mentors/dashboard', [MentorController::class, 'dashboard'])->name('mentors.dashboard');
     Route::post('/mentor/accept/{team}', [MentorController::class, 'accept'])->name('mentor.accept');

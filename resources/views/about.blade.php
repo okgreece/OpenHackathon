@@ -58,12 +58,13 @@
     <!-- Header -->
     <header class="w-full bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 p-6 shadow-md">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="javascript:window.history.back();">
+            <a href="./">
                 <h1 class="text-2xl font-bold text-white">OpenUP Hackathon</h1>
             </a>
             <nav class="space-x-4">
                 <a href="./about"
                     class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">Σχετικά</a>
+                <a href="./about-mentors" class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">Μέντορες</a>
                 <a href="https://tds.okfn.gr/" target="_blank"
                     class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition">Open Data
                     Space</a>

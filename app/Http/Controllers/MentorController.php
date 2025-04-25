@@ -114,5 +114,12 @@ class MentorController extends Controller
 
         return redirect()->route('mentors.dashboard')->with('error', 'Η αίτηση απορρίφθηκε επιτυχώς!');
     }
+
+    public function aboutMentor()
+    {
+        $mentors = Mentor::all();
+
+        return view('aboutmentors', compact('mentors'));
+    }
     
 }
