@@ -1,15 +1,21 @@
 FROM php:8.3-apache AS web
 
-# Εγκατάσταση απαιτούμενων πακέτων
-RUN apt-get update && apt-get install -y \
+# Αντικατάσταση του HTTP με HTTPS στα αποθετήρια
+RUN sed -i 's|http://deb.debian.org|https://deb.debian.org|g' /etc/apt/sources.list
+
+# Εγκατάσταση των GPG keys και άλλων απαιτούμενων πακέτων
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    apt-transport-https \
+    gnupg \
+    debian-archive-keyring \
     libzip-dev \
     zip \
     unzip \
     curl \
     git \
-    nano \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
+    nano && apt-get clean && rm -rf /var/lib/apt/lists/*
+    
 # Ενεργοποίηση Apache mod_rewrite
 RUN a2enmod rewrite
 
