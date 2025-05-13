@@ -491,66 +491,23 @@
             </div>
 
             <!-- Mentor Card -->
-            <!-- <div
+            <div
                 class="bg-gray-50 border border-gray-200 rounded-2xl p-10 shadow-lg text-center flex flex-col items-center w-full h-full">
 
-                <img src="{{ asset('/img/mentors-img/tambouris.jpg') }}" alt="Mentor Photo"
+                <img src="{{ asset('/img/mentors-img/kazlaris.jpg') }}" alt="Mentor Photo"
                     class="w-28 h-28 rounded-full object-cover shadow-md mb-5">
 
-                <h3 class="text-xl font-semibold text-gray-800 mb-1">Ευθύμιος Ταμπούρης</h3>
-                <span class="text-sm text-gray-500 mb-4">ΠΑΜΑΚ</span>
-
-                <p class="text-sm text-gray-600 text-justify overflow-y-auto pr-2 max-h-60 w-full">
-                    ......
-                </p>
-            </div> -->
-
-            <!-- Mentor Card -->
-            <!-- <div
-                class="bg-gray-50 border border-gray-200 rounded-2xl p-10 shadow-lg text-center flex flex-col items-center w-full h-full">
-
-                <img src="{{ asset('/img/mentors-img/') }}" alt="Mentor Photo"
-                    class="w-28 h-28 rounded-full object-cover shadow-md mb-5">
-
-                <h3 class="text-xl font-semibold text-gray-800 mb-1">Ιωάννης Καζλάρης</h3>
+                <h3 class="text-xl font-semibold text-gray-800 mb-1">Καζλάρης Ιωάννης</h3>
                 <span class="text-sm text-gray-500 mb-4">Δήμος Δέλτα</span>
 
                 <p class="text-sm text-gray-600 text-justify overflow-y-auto pr-2 max-h-60 w-full">
-                    ......
+                    Ο Καζλάρης Ιωάννης είναι υποψήφιος διδάκτορας του Διεθνούς Πανεπιστημίου Ελλάδος με ερευνητικά
+                    ενδιαφέροντα στον τομέα της Τεχνητής Νοημοσύνης. Είναι απόφοιτος του τμήματος Μηχανικών Πληροφορικής
+                    του ΑΤΕΙΘ, κάτοχος μεταπτυχιακού τίτλου (Master of Arts, από το Open University) και μεταπτυχιακού
+                    τίτλου σπουδών (Ευφυείς Τεχνολογίες Διαδικτύου, ΔΙΠΑΕ). Εργάζεται στον Δήμο Δέλτα ως υπεύθυνος
+                    μηχανογράφησης.
                 </p>
-            </div> -->
-
-            <!-- Mentor Card -->
-            <!-- <div
-                class="bg-gray-50 border border-gray-200 rounded-2xl p-10 shadow-lg text-center flex flex-col items-center w-full h-full">
-
-                <img src="{{ asset('/img/mentors-img/') }}" alt="Mentor Photo"
-                    class="w-28 h-28 rounded-full object-cover shadow-md mb-5">
-
-                <h3 class="text-xl font-semibold text-gray-800 mb-1">Βασιλική Παπαδοπούλου</h3>
-                <span class="text-sm text-gray-500 mb-4">ANATOLIKH AE</span>
-
-                <p class="text-sm text-gray-600 text-justify overflow-y-auto pr-2 max-h-60 w-full">
-                    ......
-                </p>
-            </div> -->
-
-            <!-- Mentor Card -->
-            <!-- <div
-                class="bg-gray-50 border border-gray-200 rounded-2xl p-10 shadow-lg text-center flex flex-col items-center w-full h-full">
-
-                <img src="{{ asset('/img/mentors-img/') }}" alt="Mentor Photo"
-                    class="w-28 h-28 rounded-full object-cover shadow-md mb-5">
-
-                <h3 class="text-xl font-semibold text-gray-800 mb-1">Xατζής Χαράλαμπος</h3>
-                <span class="text-sm text-gray-500 mb-4">Δήμος Θεσσαλονίκης</span>
-
-                <p class="text-sm text-gray-600 text-justify overflow-y-auto pr-2 max-h-60 w-full">
-                    ......
-                </p>
-            </div> -->
-
-
+            </div>
         </div>
     </main>
 
